@@ -3,12 +3,15 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Target, Users, TrendingUp, ArrowRight, Zap, DollarSign } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const HowItWorks = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
+
+  const router = useRouter()
 
   const steps = [
     {
@@ -213,11 +216,7 @@ const HowItWorks = () => {
           transition={{ duration: 0.8, delay: 1.5 }}
         >
           <motion.button
-            onClick={() => {
-              // Scroll para a seção de preços ou abrir modal de cadastro
-              document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' }) || 
-              window.open('https://calendly.com', '_blank'); // Substitua pela URL desejada
-            }}
+            onClick={() => router.push('/chat')}
             className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-200 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

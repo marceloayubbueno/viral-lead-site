@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Viral Lead</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .chat-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #155EFF 0%, #0D47A1 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+        }
+
+        .chat-header h2 {
+            margin: 0;
+            font-size: 1.4em;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        #closeChat {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        #closeChat:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            padding: 16px;
+            border-radius: 16px;
+            max-width: 85%;
+            font-size: 15px;
+            line-height: 1.5;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            word-wrap: break-word;
+        }
+
+        .message.bot {
+            background-color: white;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, #155EFF 0%, #0D47A1 100%);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            background-color: white;
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        #userInput {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #e1e5ee;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        #userInput:focus {
+            outline: none;
+            border-color: #155EFF;
+            box-shadow: 0 0 0 3px rgba(21, 94, 255, 0.1);
+        }
+
+        #sendButton {
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #155EFF 0%, #0D47A1 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        #sendButton:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(21, 94, 255, 0.2);
+        }
+
+        .message-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .message-button {
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #155EFF 0%, #0D47A1 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .message-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(21, 94, 255, 0.2);
+        }
+
+        .message-button.sim {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        }
+
+        .message-button.sim:hover {
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+        }
+
+        .message-button.funcionarios {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+        }
+
+        .message-button.funcionarios:hover {
+            box-shadow: 0 4px 12px rgba(156, 39, 176, 0.2);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 6px;
+            padding: 16px;
+            background-color: white;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            width: fit-content;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #155EFF;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: typing 1s infinite ease-in-out;
+        }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); opacity: 0.6; }
+            50% { transform: translateY(-4px); opacity: 1; }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        @media (max-width: 480px) {
+            .chat-container {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Viral Lead</h2>
+            <button id="closeChat">X</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <p>Olá, tudo bem?</p>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Digite sua mensagem...">
+            <button id="sendButton">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Configuração do Google Sheets
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxlsgiP_JXeF7k3aFzwVUe7Wo0bQuW3gRwkspWlCtKD-aqelikAX2brb91cOlZN09X4/exec';
+        const OBRIGADO_URL = 'https://virallead.com.br/obrigado-lead/';
+
+        // Elementos do DOM
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+        const closeChat = document.getElementById('closeChat');
+
+        // Estado do chat
+        let userData = {
+            nome: '',
+            email: '',
+            telefone: '',
+            empresa: '',
+            funcionarios: ''
+        };
+
+        // Função para adicionar mensagem ao chat
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            messageDiv.innerHTML = `<p>${text}</p>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Função para adicionar botões de resposta
+        function addButtons(buttons) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            const buttonsDiv = document.createElement('div');
+            buttonsDiv.className = 'message-buttons';
+            
+            buttons.forEach(button => {
+                const buttonElement = document.createElement('button');
+                buttonElement.className = `message-button ${button.class || ''}`;
+                buttonElement.textContent = button.text;
+                buttonElement.onclick = button.onclick;
+                buttonsDiv.appendChild(buttonElement);
+            });
+            
+            messageDiv.appendChild(buttonsDiv);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Função para enviar dados para o Google Sheets
+        async function sendToGoogleSheets(data) {
+            console.log('Iniciando envio de dados:', data);
+
+            // Cria um formulário para envio
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = SCRIPT_URL;
+            form.target = 'hidden-iframe';
+
+            // Adiciona os dados como campos ocultos
+            Object.keys(data).forEach(key => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = data[key];
+                form.appendChild(input);
+            });
+
+            // Cria um iframe oculto para receber a resposta
+            const iframe = document.createElement('iframe');
+            iframe.name = 'hidden-iframe';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+
+            return new Promise((resolve, reject) => {
+                // Manipulador de sucesso
+                iframe.onload = function() {
+                    console.log('Resposta recebida do servidor');
+                    document.body.removeChild(iframe);
+                    document.body.removeChild(form);
+                    resolve({ status: 'success' });
+                };
+
+                // Manipulador de erro
+                iframe.onerror = function(error) {
+                    console.error('Erro no envio:', error);
+                    document.body.removeChild(iframe);
+                    document.body.removeChild(form);
+                    reject(error);
+                };
+
+                // Adiciona o formulário ao documento e envia
+                document.body.appendChild(form);
+                console.log('Enviando formulário...');
+                form.submit();
+            });
+        }
+
+        // Função para mostrar indicador de digitação
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return typingDiv;
+        }
+
+        // Função para remover indicador de digitação
+        function removeTypingIndicator(indicator) {
+            if (indicator && indicator.parentNode) {
+                indicator.parentNode.removeChild(indicator);
+            }
+        }
+
+        // Função para adicionar mensagem com delay
+        async function addMessageWithDelay(text, isUser = false, delay = 1000) {
+            if (!isUser) {
+                const typingIndicator = showTypingIndicator();
+                await new Promise(resolve => setTimeout(resolve, delay));
+                removeTypingIndicator(typingIndicator);
+            }
+            addMessage(text, isUser);
+        }
+
+        // Função para adicionar botões com delay
+        async function addButtonsWithDelay(buttons, delay = 1000) {
+            const typingIndicator = showTypingIndicator();
+            await new Promise(resolve => setTimeout(resolve, delay));
+            removeTypingIndicator(typingIndicator);
+            addButtons(buttons);
+        }
+
+        // Função para iniciar o chat
+        async function startChat() {
+            await addMessageWithDelay('Gostaria de conhecer mais sobre nosso Software?', false, 1500);
+            await addButtonsWithDelay([
+                { text: 'SIM, QUERO CONHECER', class: 'sim', onclick: async () => {
+                    addMessage('SIM, QUERO CONHECER', true);
+                    await addMessageWithDelay('Show! Vou pegar umas informações rápidas', false, 1000);
+                    await addMessageWithDelay('Qual o seu nome?', false, 1500);
+                }}
+            ]);
+        }
+
+        // Função para processar a mensagem do usuário
+        async function processUserMessage(message) {
+            if (!userData.nome) {
+                userData.nome = message;
+                await addMessageWithDelay(`Obrigado, ${message}! Qual o seu e-mail corporativo?`, false, 1500);
+            } else if (!userData.email) {
+                userData.email = message;
+                await addMessageWithDelay('Qual o seu telefone? (Vamos entrar em contato por ele)', false, 1500);
+            } else if (!userData.telefone) {
+                userData.telefone = message;
+                await addMessageWithDelay('De qual empresa você fala?', false, 1500);
+            } else if (!userData.empresa) {
+                userData.empresa = message;
+                await addMessageWithDelay('Última pergunta, qual número de funcionários da sua empresa?', false, 1500);
+                await addButtonsWithDelay([
+                    { text: '1 a 10', class: 'funcionarios', onclick: () => selectFuncionarios('1 a 10') },
+                    { text: '11 a 50', class: 'funcionarios', onclick: () => selectFuncionarios('11 a 50') },
+                    { text: '51 a 500', class: 'funcionarios', onclick: () => selectFuncionarios('51 a 500') },
+                    { text: '501 a 1.000', class: 'funcionarios', onclick: () => selectFuncionarios('501 a 1.000') },
+                    { text: 'Acima de 1.000', class: 'funcionarios', onclick: () => selectFuncionarios('Acima de 1.000') }
+                ]);
+            }
+        }
+
+        // Função para selecionar número de funcionários
+        async function selectFuncionarios(numero) {
+            try {
+                userData.funcionarios = numero;
+                addMessage(`Número de funcionários: ${numero}`, true);
+                
+                // Adiciona data e hora ao envio
+                userData.dataHora = new Date().toLocaleString('pt-BR');
+                
+                // Mostra mensagem de "enviando dados..."
+                await addMessageWithDelay('Enviando suas informações...', false, 1000);
+                
+                console.log('Preparando para enviar dados:', userData);
+                
+                // Enviar dados para o Google Sheets
+                const result = await sendToGoogleSheets(userData);
+                console.log('Resultado do envio:', result);
+                
+                if (result.status === 'success') {
+                    await addMessageWithDelay('Obrigado pelo contato! Redirecionando...', false, 1000);
+                    
+                    // Redireciona após um pequeno delay para a mensagem ser visível
+                    setTimeout(() => {
+                        window.location.href = OBRIGADO_URL;
+                    }, 1500);
+                } else {
+                    throw new Error('Falha no envio dos dados');
+                }
+            } catch (error) {
+                console.error('Erro completo:', error);
+                await addMessageWithDelay('Desculpe, tivemos um problema ao salvar suas informações. Por favor, tente novamente mais tarde.', false, 1500);
+            }
+            
+            // Resetar dados do usuário
+            userData = {
+                nome: '',
+                email: '',
+                telefone: '',
+                empresa: '',
+                funcionarios: ''
+            };
+        }
+
+        // Event Listeners
+        sendButton.addEventListener('click', () => {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                processUserMessage(message);
+                userInput.value = '';
+            }
+        });
+
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+
+        closeChat.addEventListener('click', () => {
+            window.close();
+        });
+
+        // Inicializa o chat
+        window.addEventListener('DOMContentLoaded', () => {
+            startChat();
+        });
+    </script>
+</body>
+</html> 

@@ -3,12 +3,14 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Check, Star, Zap, ArrowRight } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const ModernPricing = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
+  const router = useRouter()
 
   return (
     <section id="pricing" className="py-20 bg-gradient-to-br from-gray-900 to-black text-white" ref={ref}>
@@ -144,10 +146,7 @@ const ModernPricing = () => {
                 transition={{ duration: 0.6, delay: 1.4 }}
               >
                 <motion.button
-                  onClick={() => {
-                    // Abrir modal de cadastro ou redirecionar
-                    window.open('https://calendly.com', '_blank'); // Substitua pela URL desejada
-                  }}
+                  onClick={() => router.push('/chat')}
                   className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-xl text-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 group mb-4"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}

@@ -4,12 +4,15 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import CountUp from 'react-countup'
 import { TrendingUp, Clock, DollarSign, Users, Target, ArrowRight } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const Results = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
+
+  const router = useRouter()
 
   const results = [
     {
@@ -228,6 +231,7 @@ const Results = () => {
           </div>
           
           <motion.button
+            onClick={() => router.push('/chat')}
             className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

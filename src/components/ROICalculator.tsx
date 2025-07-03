@@ -4,11 +4,13 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Calculator, TrendingUp, DollarSign, Users } from 'lucide-react'
 import CountUp from 'react-countup'
+import { useRouter } from 'next/navigation'
 
 const ROICalculator = () => {
   const [monthlyRevenue, setMonthlyRevenue] = useState(50000)
   const [affiliatePercentage, setAffiliatePercentage] = useState(20)
   const [commission, setCommission] = useState(10)
+  const router = useRouter()
 
   // Cálculos
   const currentAffiliateRevenue = (monthlyRevenue * affiliatePercentage) / 100
@@ -179,11 +181,7 @@ const ROICalculator = () => {
               </div>
 
               <motion.button
-                onClick={() => {
-                  // Scroll para a seção de preços ou abrir modal de cadastro
-                  document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' }) || 
-                  window.open('https://calendly.com', '_blank'); // Substitua pela URL desejada
-                }}
+                onClick={() => router.push('/chat')}
                 className="w-full mt-6 bg-white text-blue-600 font-bold py-4 px-6 rounded-xl hover:bg-gray-50 transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

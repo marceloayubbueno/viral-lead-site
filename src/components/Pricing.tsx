@@ -1,8 +1,11 @@
 'use client'
 
 import { Check, Star } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const Pricing = () => {
+  const router = useRouter()
+
   const plans = [
     {
       name: "Starter",
@@ -125,13 +128,15 @@ const Pricing = () => {
                 ))}
               </div>
 
-              <button className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 ${
-                plan.popular 
-                  ? 'bg-gradient-to-r from-primary-600 to-purple-600 text-white hover:shadow-lg' 
-                  : plan.name === 'Enterprise'
-                    ? 'bg-gray-900 text-white hover:bg-gray-800'
-                    : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-              }`}>
+              <button
+                onClick={() => router.push('/chat')}
+                className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 ${
+                  plan.popular 
+                    ? 'bg-gradient-to-r from-primary-600 to-purple-600 text-white hover:shadow-lg' 
+                    : plan.name === 'Enterprise'
+                      ? 'bg-gray-900 text-white hover:bg-gray-800'
+                      : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                }`}>
                 {plan.name === 'Enterprise' ? "Let's talk" : 'Get Started'}
               </button>
             </div>

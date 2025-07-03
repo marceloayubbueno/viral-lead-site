@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const ModernFooter = () => {
+  const router = useRouter()
+
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="container">
@@ -25,6 +28,7 @@ const ModernFooter = () => {
           </p>
           
           <motion.button
+            onClick={() => router.push('/chat')}
             className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-200 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

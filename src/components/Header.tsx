@@ -3,9 +3,11 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const router = useRouter()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
@@ -43,7 +45,7 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/login" className="text-gray-300 hover:text-white font-medium">Entrar</Link>
-            <Link href="/signup" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-200">Começar</Link>
+            <Link href="#" onClick={e => {e.preventDefault(); router.push('/chat')}} className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-200">Agendar demonstração</Link>
           </div>
 
           {/* Mobile menu button */}
@@ -67,7 +69,7 @@ const Header = () => {
               <Link href="#case-studies" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Casos de Sucesso</Link>
               <div className="pt-4 border-t border-gray-700">
                 <Link href="/login" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Entrar</Link>
-                <Link href="/signup" className="block px-3 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-md mt-2">Começar</Link>
+                <Link href="#" onClick={e => {e.preventDefault(); router.push('/chat')}} className="block px-3 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-md mt-2">Agendar demonstração</Link>
               </div>
             </div>
           </div>

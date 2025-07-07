@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -18,8 +19,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <div className="h-8 w-8 bg-gradient-to-r from-primary-600 to-purple-600 rounded-lg"></div>
-              <span className="ml-2 text-xl font-bold text-white">Viral Lead</span>
+              <Image src="/images/logo-branca.svg" alt="Viral Lead - Plataforma de indicação" width={160} height={42} priority />
             </Link>
           </div>
 

@@ -155,7 +155,7 @@
     height: 100%;
   }
   .chatbotForm {
-    border: 2px solid yellow;
+    /* Removida borda de debug */
   }
   .chatbotInput {
     font-size: 0.98rem;

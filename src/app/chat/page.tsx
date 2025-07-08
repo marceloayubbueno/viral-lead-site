@@ -11,7 +11,9 @@ export default function ChatPage() {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '2rem',
-    }}>
+    }}
+    className="chat-outer-wrapper"
+    >
       <ChatBot fullscreen />
     </div>
   );

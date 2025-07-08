@@ -55,3 +55,14 @@ body {
     @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
   }
 } 
+
+@media (max-width: 480px) {
+  .chat-outer-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100vw !important;
+    min-width: 100vw !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+} 

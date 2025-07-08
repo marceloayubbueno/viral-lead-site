@@ -131,7 +131,14 @@ const ChatBot = ({ fullscreen = false }: { fullscreen?: boolean }) => {
     if (result.status === 'success') {
       await addMessageWithDelay('Obrigado pelo contato! Redirecionando...', false, 1000);
       setTimeout(() => {
-        window.location.href = OBRIGADO_URL;
+        if (typeof window !== 'undefined') {
+          window.sessionStorage.setItem('leadAcesso', 'ok');
+          if (numero === '1 a 10') {
+            window.location.href = '/obrigadolead';
+          } else {
+            window.location.href = '/obrigadoleadqualificado';
+          }
+        }
       }, 1500);
     } else {
       await addMessageWithDelay('Desculpe, tivemos um problema ao salvar suas informações. Por favor, tente novamente mais tarde.', false, 1500);

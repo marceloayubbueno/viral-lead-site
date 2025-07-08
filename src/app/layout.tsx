@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import PixelAndConsentProvider from '../components/PixelAndConsentProvider';
 
 export const metadata: Metadata = {
   title: 'Viral Lead - Plataforma Moderna de Programas de Afiliados',
@@ -26,11 +27,13 @@ export default function RootLayout({
             gtag('config', 'G-3LD18W31KC');
           `,
         }} />
+        {/* Meta Pixel será controlado por componente client-side */}
       </head>
       <body className="font-sans antialiased">
         <div className="min-h-screen bg-white">
           {children}
         </div>
+        <PixelAndConsentProvider />
       </body>
     </html>
   )

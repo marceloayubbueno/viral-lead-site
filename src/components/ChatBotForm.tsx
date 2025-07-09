@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxlsgiP_JXeF7k3aFzwVUe7Wo0bQuW3gRwkspWlCtKD-aqelikAX2brb91cOlZN09X4/exec';
 
@@ -21,8 +22,8 @@ const funcionariosOptions = [
 const ChatBotForm = () => {
   const [userData, setUserData] = useState(initialUserData);
   const [isSending, setIsSending] = useState(false);
-  const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -42,7 +43,10 @@ const ChatBotForm = () => {
         body: formData,
         mode: 'no-cors',
       });
-      setSent(true);
+      if (typeof window !== 'undefined') {
+        window.sessionStorage.setItem('leadAcesso', 'ok');
+        router.push('/obrigadotestegratis');
+      }
       setUserData(initialUserData);
     } catch (err) {
       setError('Erro ao enviar. Tente novamente.');
@@ -50,14 +54,6 @@ const ChatBotForm = () => {
       setIsSending(false);
     }
   };
-
-  if (sent) {
-    return (
-      <div className="bg-green-100 text-green-800 p-4 rounded-lg shadow text-center">
-        Obrigado pelo interesse! Seus dados foram enviados com sucesso. Em breve entraremos em contato.
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="bg-gray-900 p-8 rounded-xl shadow-xl flex flex-col gap-4 w-full max-w-md mx-auto">

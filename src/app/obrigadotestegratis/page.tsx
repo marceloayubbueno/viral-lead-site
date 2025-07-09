@@ -17,8 +17,10 @@ export default function ObrigadoTesteGratisPage() {
       if (typeof window.fbq === 'function') {
         (window.fbq as (...args: any[]) => void)('trackCustom', 'LeadTesteGratis');
       }
-      // Limpar flag para evitar acesso futuro
-      window.sessionStorage.removeItem('leadAcesso');
+      // Remover flag após 3 segundos
+      setTimeout(() => {
+        window.sessionStorage.removeItem('leadAcesso');
+      }, 3000);
     }
   }, [router]);
 

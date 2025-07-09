@@ -99,12 +99,19 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <motion.button
-              onClick={() => router.push('/chat')}
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.location.pathname === '/testegratis') {
+                  const form = document.getElementById('form-testegratis');
+                  if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                  router.push('/chat');
+                }
+              }}
               className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl text-lg group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Agendar uma demostração
+              Agendar uma demonstração
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform inline" />
             </motion.button>
           </motion.div>

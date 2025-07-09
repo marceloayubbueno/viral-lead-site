@@ -29,7 +29,7 @@ const ModernPricing = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Star className="w-4 h-4 mr-2" />
-            7 dias de teste sem riscos
+            15 dias de teste sem riscos
           </motion.div>
           
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
@@ -38,7 +38,7 @@ const ModernPricing = () => {
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Sem pegadinhas, sem taxas escondidas. Teste por 7 dias e veja como um programa de indicações 
+            Sem pegadinhas, sem taxas escondidas. Teste por 15 dias e veja como um programa de indicações 
             pode transformar seu negócio.
           </p>
         </motion.div>
@@ -65,101 +65,200 @@ const ModernPricing = () => {
               }}
             />
             
-            <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
-              {/* Popular Badge */}
-              <motion.div 
-                className="absolute -top-4 left-1/2 transform -translate-x-1/2"
-                initial={{ opacity: 0, y: -20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center">
-                  <Zap className="w-4 h-4 mr-2" />
-                  Mais Popular
-                </div>
-              </motion.div>
-
-              <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold mb-4">Plano Completo</h3>
-                
-                <div className="mb-6">
-                  <div className="flex items-baseline justify-center mb-2">
-                    <span className="text-5xl font-bold">R$ 597,00</span>
-                    <span className="text-gray-400 ml-2">/mês</span>
+            {typeof window !== 'undefined' && window.location.pathname === '/testegratis' ? (
+              <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
+                <motion.div 
+                  className="absolute -top-4 left-1/2 transform -translate-x-1/2"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                >
+                  <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center">
+                    <Zap className="w-4 h-4 mr-2" />
+                    Teste Grátis 15 dias
+                  </div>
+                </motion.div>
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl font-bold mb-4">Acesse a Plataforma Completa</h3>
+                  <div className="mb-6">
+                    <div className="flex items-baseline justify-center mb-2">
+                      <span className="text-5xl font-bold text-green-400">R$ 0,00</span>
+                      <span className="text-gray-400 ml-2">/15 dias</span>
+                    </div>
+                    <div className="text-green-400 font-semibold">Sem compromisso, sem cartão de crédito</div>
                   </div>
                 </div>
-              </div>
-
-              {/* Features */}
-              <motion.div 
-                className="mb-8"
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
-                    '500 indicadores',
-                    'Dashboard completo',
-                    'Automação de pagamentos',
-                    'Materiais profissionais',
-                    'Analytics avançados', 
-                    'Suporte prioritário',
-                    'Integrações nativas',
-                    'Treinamento incluído'
-                  ].map((feature, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex items-center"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.9 + index * 0.05 }}
-                    >
-                      <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
-                      <span className="text-gray-300">{feature}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Guarantee */}
-              <motion.div 
-                className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.2 }}
-              >
-                <div className="text-center">
-                  <div className="text-4xl mb-3">🛡️</div>
-                  <h4 className="text-lg font-bold text-green-400 mb-2">Garantia de 7 dias</h4>
-                  <p className="text-gray-300 text-sm">
-                    Se não ficar satisfeito, devolvemos 100% do seu dinheiro. Sem perguntas.
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* CTA Button */}
-              <motion.div 
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.4 }}
-              >
-                <motion.button
-                  onClick={() => router.push('/chat')}
-                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-xl text-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 group mb-4"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <motion.div 
+                  className="mb-8"
+                  initial={{ opacity: 0 }}
+                  animate={inView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  Agendar uma demonstração
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform inline" />
-                </motion.button>
-                
-                <p className="text-gray-400 text-sm">
-                  ⭐ Sem cartão de crédito necessário • Cancele a qualquer momento
-                </p>
-              </motion.div>
-            </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      'Acesso total à plataforma',
+                      'Dashboard completo',
+                      'Automação de pagamentos',
+                      'Materiais profissionais',
+                      'Analytics avançados', 
+                      'Suporte prioritário',
+                      'Integrações nativas',
+                      'Treinamento incluído'
+                    ].map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        className="flex items-center"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={inView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.4, delay: 0.9 + index * 0.05 }}
+                      >
+                        <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
+                        <span className="text-gray-300">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+                <motion.div 
+                  className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-6 mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                >
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">🎉</div>
+                    <h4 className="text-lg font-bold text-blue-400 mb-2">15 dias de Teste Grátis</h4>
+                    <p className="text-gray-300 text-sm">
+                      Experimente todos os recursos sem compromisso. Após o período, escolha se deseja continuar.
+                    </p>
+                  </div>
+                </motion.div>
+                <motion.div 
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 1.4 }}
+                >
+                  <motion.button
+                    onClick={() => {
+                      const form = document.getElementById('form-testegratis');
+                      if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }}
+                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-xl text-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 group mb-4"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Começar Meu Teste Agora
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform inline" />
+                  </motion.button>
+                  <p className="text-gray-400 text-sm">
+                    ⭐ Sem cartão de crédito necessário • Sem compromisso
+                  </p>
+                </motion.div>
+              </div>
+            ) : (
+              <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
+                {/* Popular Badge */}
+                <motion.div 
+                  className="absolute -top-4 left-1/2 transform -translate-x-1/2"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                >
+                  <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center">
+                    <Zap className="w-4 h-4 mr-2" />
+                    Mais Popular
+                  </div>
+                </motion.div>
+
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl font-bold mb-4">Plano Completo</h3>
+                  
+                  <div className="mb-6">
+                    <div className="flex items-baseline justify-center mb-2">
+                      <span className="text-5xl font-bold">R$ 597,00</span>
+                      <span className="text-gray-400 ml-2">/mês</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Features */}
+                <motion.div 
+                  className="mb-8"
+                  initial={{ opacity: 0 }}
+                  animate={inView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      '500 indicadores',
+                      'Dashboard completo',
+                      'Automação de pagamentos',
+                      'Materiais profissionais',
+                      'Analytics avançados', 
+                      'Suporte prioritário',
+                      'Integrações nativas',
+                      'Treinamento incluído'
+                    ].map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        className="flex items-center"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={inView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.4, delay: 0.9 + index * 0.05 }}
+                      >
+                        <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
+                        <span className="text-gray-300">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Guarantee */}
+                <motion.div 
+                  className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                >
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">🛡️</div>
+                    <h4 className="text-lg font-bold text-green-400 mb-2">Garantia de 7 dias</h4>
+                    <p className="text-gray-300 text-sm">
+                      Se não ficar satisfeito, devolvemos 100% do seu dinheiro. Sem perguntas.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* CTA Button */}
+                <motion.div 
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 1.4 }}
+                >
+                  <motion.button
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && window.location.pathname === '/testegratis') {
+                        const form = document.getElementById('form-testegratis');
+                        if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      } else {
+                        router.push('/chat');
+                      }
+                    }}
+                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-xl text-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 group mb-4"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Agendar uma demonstração
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform inline" />
+                  </motion.button>
+                  
+                  <p className="text-gray-400 text-sm">
+                    ⭐ Sem cartão de crédito necessário • Cancele a qualquer momento
+                  </p>
+                </motion.div>
+              </div>
+            )}
           </div>
         </motion.div>
 

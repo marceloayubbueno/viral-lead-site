@@ -231,12 +231,19 @@ const Results = () => {
           </div>
           
           <motion.button
-            onClick={() => router.push('/chat')}
+            onClick={() => {
+              if (typeof window !== 'undefined' && window.location.pathname === '/testegratis') {
+                const form = document.getElementById('form-testegratis');
+                if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              } else {
+                router.push('/chat');
+              }
+            }}
             className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Quero Transformar Meu Negócio Agora
+            {typeof window !== 'undefined' && window.location.pathname === '/testegratis' ? 'Começar Meu Teste Agora' : 'Quero Transformar Meu Negócio Agora'}
           </motion.button>
         </motion.div>
       </div>

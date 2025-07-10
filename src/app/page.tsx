@@ -11,6 +11,30 @@ import { useState } from 'react'
 export default function Home() {
   const [showChat, setShowChat] = useState(false);
 
+  const mobileStyle = typeof window !== 'undefined' && window.innerWidth <= 600
+    ? {
+        left: 0,
+        right: 0,
+        width: '100vw',
+        margin: 0,
+        maxHeight: '65vh',
+        height: '65vh',
+        overflow: 'hidden',
+      }
+    : {};
+  if (showChat) {
+    console.log('Wrapper ChatBot', {
+      style: {
+        position: 'fixed',
+        bottom: '8rem',
+        right: '2rem',
+        zIndex: 1000,
+        width: 'auto',
+        ...mobileStyle,
+      }
+    });
+  }
+
   return (
     <main className="overflow-hidden">
       <Header />
@@ -27,7 +51,7 @@ export default function Home() {
             position: 'fixed',
             bottom: '2rem',
             right: '2rem',
-            zIndex: 1000,
+            zIndex: 1100, // Aumentado para garantir que fique acima do chat
             background: '#2563eb',
             color: '#fff',
             border: 'none',
@@ -46,12 +70,16 @@ export default function Home() {
           {showChat ? '×' : '💬'}
         </button>
         {showChat && (
-          <div style={{
-            position: 'fixed',
-            bottom: '6.5rem',
-            right: '2rem',
-            zIndex: 1000,
-          }}>
+          <div
+            style={{
+              position: 'fixed',
+              bottom: '8rem',
+              right: '2rem',
+              zIndex: 1000,
+              width: 'auto',
+              ...mobileStyle,
+            }}
+          >
             <ChatBot />
           </div>
         )}

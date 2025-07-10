@@ -29,6 +29,17 @@ const ChatBot = ({ fullscreen = false }: { fullscreen?: boolean }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const initializedRef = useRef(false);
 
+  console.log('ChatBot RENDER', { windowWidth: typeof window !== 'undefined' ? window.innerWidth : 'ssr' });
+
+  useEffect(() => {
+    const el = document.querySelector('.' + styles.chatbotContainer.replace(/\./g, ''));
+    if (el) {
+      console.log('ChatBot container size:', el.getBoundingClientRect());
+    } else {
+      console.log('ChatBot container NOT FOUND');
+    }
+  }, []);
+
   // Scroll automático para a última mensagem
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -188,13 +199,13 @@ const ChatBot = ({ fullscreen = false }: { fullscreen?: boolean }) => {
   };
 
   return (
-    <div className={fullscreen ? `${styles.chatbotContainer} ${styles.fullscreen}` : styles.chatbotContainer}>
+    <div className={fullscreen ? `${styles.chatbotContainer} ${styles.fullscreen}` : styles.chatbotContainer} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       {/* Header do Chatbot */}
-      <div className={styles.chatbotHeader}>
+      <div className={styles.chatbotHeader} style={{ flex: '0 0 auto' }}>
         <span>Viral Lead</span>
       </div>
       {/* Área de mensagens */}
-      <div className={styles.chatbotMessages}>
+      <div className={styles.chatbotMessages} style={{ flex: '1 1 auto', overflowY: 'auto', minHeight: 0 }}>
         {messages.map((msg, idx) => (
           <div
             key={idx}
@@ -229,7 +240,7 @@ const ChatBot = ({ fullscreen = false }: { fullscreen?: boolean }) => {
         <div ref={messagesEndRef} />
       </div>
       {/* Input do usuário */}
-      <form className={styles.chatbotForm} onSubmit={handleSend}>
+      <form className={styles.chatbotForm} style={{ flex: '0 0 auto' }} onSubmit={handleSend}>
         <input
           type="text"
           className={styles.chatbotInput}

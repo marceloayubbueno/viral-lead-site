@@ -38,8 +38,7 @@ const ModernPricing = () => {
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Sem pegadinhas, sem taxas escondidas. Teste por 15 dias e veja como um programa de indicações 
-            pode transformar seu negócio.
+            Conheça os principais recursos que tornam nossa plataforma completa para impulsionar suas indicações, automatizar processos e facilitar o crescimento do seu negócio.
           </p>
         </motion.div>
 
@@ -157,28 +156,12 @@ const ModernPricing = () => {
               </div>
             ) : (
               <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
-                {/* Popular Badge */}
-                <motion.div 
-                  className="absolute -top-4 left-1/2 transform -translate-x-1/2"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                >
-                  <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center">
-                    <Zap className="w-4 h-4 mr-2" />
-                    Mais Popular
-                  </div>
-                </motion.div>
-
+                
                 <div className="text-center mb-8">
-                  <h3 className="text-3xl font-bold mb-4">Plano Completo</h3>
-                  
-                  <div className="mb-6">
-                    <div className="flex items-baseline justify-center mb-2">
-                      <span className="text-5xl font-bold">R$ 597,00</span>
-                      <span className="text-gray-400 ml-2">/mês</span>
-                    </div>
-                  </div>
+                  <h3 className="text-3xl font-bold mb-4">Principais Recursos</h3>
+                  <p className="text-gray-300 mb-6 max-w-xl mx-auto">
+                    Tudo o que você precisa para impulsionar suas indicações e automatizar seu crescimento. Confira os principais recursos disponíveis na plataforma:
+                  </p>
                 </div>
 
                 {/* Features */}
@@ -190,7 +173,7 @@ const ModernPricing = () => {
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {[
-                      '500 indicadores',
+                      'Integrações nativas',
                       'Dashboard completo',
                       'Automação de pagamentos',
                       'Materiais profissionais',
@@ -210,22 +193,6 @@ const ModernPricing = () => {
                         <span className="text-gray-300">{feature}</span>
                       </motion.div>
                     ))}
-                  </div>
-                </motion.div>
-
-                {/* Guarantee */}
-                <motion.div 
-                  className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 mb-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.2 }}
-                >
-                  <div className="text-center">
-                    <div className="text-4xl mb-3">🛡️</div>
-                    <h4 className="text-lg font-bold text-green-400 mb-2">Garantia de 7 dias</h4>
-                    <p className="text-gray-300 text-sm">
-                      Se não ficar satisfeito, devolvemos 100% do seu dinheiro. Sem perguntas.
-                    </p>
                   </div>
                 </motion.div>
 

@@ -47,4 +47,14 @@
 
 ---
 
+## 6. Manutenção e Ajustes do ChatBot
+
+- O ChatBot possui altura fixa e rolagem interna tanto no desktop quanto no mobile, garantindo que a caixa nunca cresça além do limite e o conteúdo role internamente.
+- O posicionamento do botão flutuante e o espaçamento da base são essenciais para boa UX.
+- Para ajustes de responsividade, altura ou comportamento, consulte o documento `docs/chatbot-funcionamento.md`.
+- Sempre teste o comportamento do chat em diferentes tamanhos de tela após qualquer ajuste.
+- Caso precise alterar altura, rolagem ou responsividade, siga as boas práticas descritas na documentação do ChatBot.
+
+---
+
 **Dúvidas ou sugestões? Atualize este documento conforme o time evoluir!** 

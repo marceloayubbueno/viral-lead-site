@@ -65,15 +65,18 @@ const ModernFooter = () => {
             <div className="space-y-2">
               <div className="flex items-center text-gray-400">
                 <Mail className="w-4 h-4 mr-3" />
-              <span>contato@viralead.com.br</span>
+              <span>marceloayub@virallead.com.br</span>
               </div>
               <div className="flex items-center text-gray-400">
                 <Phone className="w-4 h-4 mr-3" />
-                <span>+55 (11) 9999-0000</span>
+                <span>+(55) (28) 99884-6446</span>
               </div>
               <div className="flex items-center text-gray-400">
                 <MapPin className="w-4 h-4 mr-3" />
-                <span>São Paulo, Brasil</span>
+                <span>Espirito Santo, Brasil</span>
+              </div>
+              <div className="flex items-center text-gray-400">
+                <span className="text-sm">CNPJ: 61.746.159/0001-44</span>
               </div>
             </div>
           </motion.div>

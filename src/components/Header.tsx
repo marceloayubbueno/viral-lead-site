@@ -40,6 +40,7 @@ const Header = () => {
                   <Link href="#features" className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white">Emails</Link>
                 </div>
               </div>
+              <Link href="/blog" className="text-gray-300 hover:text-white font-medium">Blog</Link>
               <Link href="#integration" className="text-gray-300 hover:text-white font-medium">Integração</Link>
               <Link href="#pricing" className="text-gray-300 hover:text-white font-medium">Preços</Link>
               <Link href="#case-studies" className="text-gray-300 hover:text-white font-medium">Casos de Sucesso</Link>
@@ -81,6 +82,7 @@ const Header = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-800 border-t border-gray-700">
               {!isTesteGratis && <>
                 <Link href="#features" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Recursos</Link>
+                <Link href="/blog" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Blog</Link>
                 <Link href="#integration" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Integração</Link>
                 <Link href="#pricing" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Preços</Link>
                 <Link href="#case-studies" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Casos de Sucesso</Link>

@@ -65,4 +65,102 @@ body {
     max-width: 100vw !important;
     box-sizing: border-box !important;
   }
+}
+
+/* CSS para Markdown - Títulos em Azul e Tabelas Formatadas */
+.markdown-content {
+  @apply text-gray-100 leading-relaxed px-8;
+}
+
+.markdown-content h1 {
+  @apply text-3xl font-bold text-blue-400 mb-6 mt-8 border-b border-gray-600 pb-2;
+}
+
+.markdown-content h2 {
+  @apply text-2xl font-bold text-blue-400 mb-4 mt-6;
+}
+
+.markdown-content h3 {
+  @apply text-xl font-bold text-blue-400 mb-3 mt-5;
+}
+
+.markdown-content h4 {
+  @apply text-lg font-bold text-blue-400 mb-2 mt-4;
+}
+
+.markdown-content h5 {
+  @apply text-base font-bold text-blue-400 mb-2 mt-3;
+}
+
+.markdown-content h6 {
+  @apply text-sm font-bold text-blue-400 mb-2 mt-3;
+}
+
+.markdown-content p {
+  @apply mb-4 text-gray-200;
+}
+
+.markdown-content strong {
+  @apply font-bold text-white;
+}
+
+.markdown-content em {
+  @apply italic text-gray-300;
+}
+
+.markdown-content ul {
+  @apply mb-4 list-disc list-inside text-gray-200;
+}
+
+.markdown-content ol {
+  @apply mb-4 list-decimal list-inside text-gray-200;
+}
+
+.markdown-content li {
+  @apply mb-1;
+}
+
+.markdown-content a {
+  @apply text-blue-400 hover:text-blue-300 underline;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-blue-400 pl-4 italic text-gray-300 mb-4;
+}
+
+.markdown-content code {
+  @apply bg-gray-700 text-green-400 px-2 py-1 rounded text-sm font-mono;
+}
+
+.markdown-content pre {
+  @apply bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent text-green-400 p-0;
+}
+
+/* CSS para Tabelas Formatadas */
+.table-wrapper {
+  @apply overflow-x-auto mb-6;
+}
+
+.markdown-content table {
+  @apply w-full border-collapse border border-gray-600 mb-4;
+}
+
+.markdown-content th {
+  @apply bg-gray-700 text-white font-bold p-3 text-left border border-gray-600;
+}
+
+.markdown-content td {
+  @apply p-3 border border-gray-600 text-gray-200;
+}
+
+.markdown-content tr:nth-child(even) {
+  @apply bg-gray-800;
+}
+
+.markdown-content tr:hover {
+  @apply bg-gray-700;
 } 

@@ -180,10 +180,10 @@ export default function AdminEditorPage() {
               Gerenciador de Blog
             </h1>
             
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-300">
-                Logado como: {authState.user}
-              </span>
+                          <div className="flex items-center space-x-4">
+                <span className="text-sm text-gray-300">
+                  Logado como: {authState.user}
+                </span>
               <button
                 onClick={handleLogout}
                 className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors"

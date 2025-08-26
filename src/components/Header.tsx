@@ -41,8 +41,8 @@ const Header = () => {
                 </div>
               </div>
               <Link href="/blog" className="text-gray-300 hover:text-white font-medium">Blog</Link>
+              <Link href="/calculadora" className="text-gray-300 hover:text-white font-medium">Calculadora</Link>
               <Link href="#integration" className="text-gray-300 hover:text-white font-medium">Integração</Link>
-              <Link href="#pricing" className="text-gray-300 hover:text-white font-medium">Preços</Link>
               <Link href="#case-studies" className="text-gray-300 hover:text-white font-medium">Casos de Sucesso</Link>
             </nav>
           )}
@@ -83,8 +83,8 @@ const Header = () => {
               {!isTesteGratis && <>
                 <Link href="#features" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Recursos</Link>
                 <Link href="/blog" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Blog</Link>
+                <Link href="/calculadora" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Calculadora</Link>
                 <Link href="#integration" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Integração</Link>
-                <Link href="#pricing" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Preços</Link>
                 <Link href="#case-studies" className="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md">Casos de Sucesso</Link>
               </>}
               <div className="pt-4 border-t border-gray-700">

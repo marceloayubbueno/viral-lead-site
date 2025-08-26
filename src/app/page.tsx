@@ -1,6 +1,7 @@
 "use client";
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
+import VideoSection from '@/components/VideoSection'
 import HowItWorks from '@/components/HowItWorks'
 import Results from '@/components/Results'
 import ModernPricing from '@/components/ModernPricing'
@@ -39,6 +40,7 @@ export default function Home() {
     <main className="overflow-hidden">
       <Header />
       <Hero />
+      <VideoSection />
       <HowItWorks />
       <Results />
       <ModernPricing />

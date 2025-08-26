@@ -70,19 +70,19 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
 
   if (authState.isAuthenticated) {
     return (
-      <div className="card-admin p-6 max-w-md mx-auto">
+      <div className="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold admin-text-primary mb-2">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Bem-vindo, {authState.user}!
           </h2>
-          <p className="admin-text-secondary text-sm">
+          <p className="text-gray-600 text-sm">
             Último login: {authState.lastLogin ? new Date(authState.lastLogin).toLocaleString('pt-BR') : 'N/A'}
           </p>
         </div>
         
         <button
           onClick={handleLogout}
-          className="w-full btn-admin-primary"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
           type="button"
         >
           Sair
@@ -92,19 +92,19 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
   }
 
   return (
-    <div className="card-admin p-6 max-w-md mx-auto">
+    <div className="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold admin-text-primary mb-2">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
           Acesso Administrativo
         </h2>
-        <p className="admin-text-secondary">
+        <p className="text-gray-600">
           Faça login para gerenciar o blog
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="username" className="block text-sm font-medium admin-text-primary mb-1">
+          <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
             Usuário
           </label>
           <input
@@ -114,14 +114,14 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
             value={credentials.username}
             onChange={handleInputChange}
             required
-            className="input-admin"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Digite seu usuário"
             disabled={isLoading}
           />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium admin-text-primary mb-1">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
             Senha
           </label>
           <input
@@ -131,36 +131,36 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
             value={credentials.password}
             onChange={handleInputChange}
             required
-            className="input-admin"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Digite sua senha"
             disabled={isLoading}
           />
         </div>
 
         {error && (
-          <div className="bg-red-900/20 border border-red-700 rounded-lg p-3">
-            <p className="text-red-400 text-sm">{error}</p>
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+            <p className="text-red-600 text-sm">{error}</p>
           </div>
         )}
 
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full btn-admin-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Entrando...' : 'Entrar'}
         </button>
       </form>
 
       <div className="mt-6 text-center">
-        <p className="text-xs admin-text-muted">
+        <p className="text-xs text-gray-500">
           Configure as credenciais nas variáveis de ambiente:
           <br />
-          <code className="bg-gray-700 px-2 py-1 rounded text-xs admin-text-secondary">
+          <code className="bg-gray-100 px-2 py-1 rounded text-xs">
             NEXT_PUBLIC_ADMIN_USERNAME
           </code>
           {' '}e{' '}
-          <code className="bg-gray-700 px-2 py-1 rounded text-xs admin-text-secondary">
+          <code className="bg-gray-100 px-2 py-1 rounded text-xs">
             NEXT_PUBLIC_ADMIN_PASSWORD
           </code>
         </p>

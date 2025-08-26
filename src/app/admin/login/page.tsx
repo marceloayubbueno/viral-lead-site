@@ -33,16 +33,13 @@ export default function AdminLoginPage() {
 
   if (authState.isAuthenticated) {
     return (
-      <div 
-        className="min-h-screen admin-dark admin-bg-primary flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
-        style={{ backgroundColor: '#0f172a' }}
-      >
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold admin-text-primary mb-2">
+            <h2 className="text-3xl font-bold text-white mb-2">
               Redirecionando...
             </h2>
-            <p className="admin-text-secondary">
+            <p className="text-gray-300">
               Você já está logado. Redirecionando para o editor.
             </p>
           </div>
@@ -52,16 +49,13 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div 
-      className="min-h-screen admin-dark admin-bg-primary flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: '#0f172a' }}
-    >
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h1 className="text-3xl font-bold admin-text-primary mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             Painel Administrativo
           </h1>
-          <p className="admin-text-secondary">
+          <p className="text-gray-300">
             Acesse o sistema de gerenciamento do blog
           </p>
         </div>
@@ -69,7 +63,7 @@ export default function AdminLoginPage() {
         <LoginForm onLoginSuccess={handleLoginSuccess} />
 
         <div className="text-center">
-          <p className="text-xs admin-text-muted">
+          <p className="text-xs text-gray-500">
             Sistema de blog integrado ao site principal
           </p>
         </div>

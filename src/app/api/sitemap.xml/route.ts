@@ -4,7 +4,8 @@ import { getPosts } from '../../../utils/storage';
 export async function GET() {
   try {
     // Obtém todos os posts publicados
-    const posts = getPosts().filter(post => post.isPublished);
+    const allPosts = await getPosts();
+    const posts = allPosts.filter(post => post.isPublished);
     
     // Data atual para lastmod
     const currentDate = new Date().toISOString().split('T')[0];

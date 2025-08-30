@@ -1,49 +1,77 @@
+"use client";
+
 import React from 'react';
 import Header from '@/components/Header';
 import ModernFooter from '@/components/ModernFooter';
 
 export default function PrivacidadePage() {
   return (
-    <main className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-x-hidden">
+    <main className="min-h-screen bg-white">
       <Header />
-      <section className="flex-1 flex justify-center items-center py-16 px-4">
-        <div className="w-full max-w-2xl bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-8 md:p-12 mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-white">Política de Privacidade</h1>
-          <p className="mb-4 text-lg text-gray-200">
-            Sua privacidade é importante para nós. Esta página explica como coletamos, usamos e protegemos suas informações ao utilizar nosso site.
-          </p>
-          <h2 className="text-xl font-semibold mt-8 mb-2 text-white">1. Uso de Cookies</h2>
-          <p className="mb-4 text-gray-200">
-            Utilizamos cookies e tecnologias similares para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdos e anúncios. Cookies são pequenos arquivos armazenados no seu dispositivo.
-          </p>
-          <h2 className="text-xl font-semibold mt-8 mb-2 text-white">2. Dados Coletados</h2>
-          <p className="mb-4 text-gray-200">
-            Podemos coletar informações como: endereço IP, localização aproximada, páginas visitadas, tempo de navegação, cliques e interações. Não coletamos dados sensíveis ou pessoais sem seu consentimento explícito.
-          </p>
-          <h2 className="text-xl font-semibold mt-8 mb-2 text-white">3. Finalidade do Tratamento</h2>
-          <ul className="list-disc pl-6 mb-4 text-gray-200">
-            <li>Melhorar a navegação e experiência do usuário.</li>
-            <li>Realizar análises estatísticas e de performance.</li>
-            <li>Personalizar conteúdos e ofertas.</li>
-            <li>Mensurar resultados de campanhas de marketing.</li>
-          </ul>
-          <h2 className="text-xl font-semibold mt-8 mb-2 text-white">4. Consentimento</h2>
-          <p className="mb-4 text-gray-200">
-            O uso de cookies para fins de análise e marketing só ocorre após seu consentimento, solicitado ao acessar o site. Você pode aceitar ou recusar a qualquer momento pelo banner de cookies.
-          </p>
-          <h2 className="text-xl font-semibold mt-8 mb-2 text-white">5. Direitos do Usuário</h2>
-          <ul className="list-disc pl-6 mb-4 text-gray-200">
-            <li>Solicitar informações sobre seus dados coletados.</li>
-            <li>Revogar ou alterar seu consentimento a qualquer momento.</li>
-            <li>Solicitar a exclusão dos seus dados, conforme a legislação vigente.</li>
-          </ul>
-          <h2 className="text-xl font-semibold mt-8 mb-2 text-white">6. Contato</h2>
-          <p className="mb-4 text-gray-200">
-            Em caso de dúvidas sobre esta política ou sobre seus dados, entre em contato pelo e-mail: <a href="mailto:contato@virallead.com.br" className="text-cyan-400 underline">contato@virallead.com.br</a>
-          </p>
-          <div className="mt-8 text-sm text-gray-400">Última atualização: {new Date().toLocaleDateString('pt-BR')}</div>
+      
+      {/* Hero Section */}
+      <section className="pt-32 pb-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Política de <span className="text-blue-600">Privacidade</span>
+            </h1>
+            <p className="text-xl text-gray-600 mb-8">
+              Sua privacidade é importante para nós. Saiba como protegemos e utilizamos suas informações.
+            </p>
+          </div>
         </div>
       </section>
+
+      {/* Conteúdo */}
+      <section className="py-24">
+        <div className="container">
+          <div className="max-w-4xl mx-auto prose prose-lg">
+            <h2>1. Informações que Coletamos</h2>
+            <p>
+              Coletamos informações que você nos fornece diretamente, como quando cria uma conta,
+              preenche formulários, ou entra em contato conosco.
+            </p>
+
+            <h2>2. Como Usamos suas Informações</h2>
+            <p>
+              Utilizamos suas informações para fornecer, manter e melhorar nossos serviços,
+              comunicar com você e personalizar sua experiência.
+            </p>
+
+            <h2>3. Compartilhamento de Informações</h2>
+            <p>
+              Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros,
+              exceto conforme descrito nesta política.
+            </p>
+
+            <h2>4. Segurança</h2>
+            <p>
+              Implementamos medidas de segurança técnicas e organizacionais apropriadas
+              para proteger suas informações pessoais.
+            </p>
+
+            <h2>5. Seus Direitos</h2>
+            <p>
+              Você tem o direito de acessar, corrigir ou excluir suas informações pessoais.
+              Entre em contato conosco para exercer esses direitos.
+            </p>
+
+            <h2>6. Alterações nesta Política</h2>
+            <p>
+              Podemos atualizar esta política de privacidade periodicamente.
+              Notificaremos você sobre mudanças significativas.
+            </p>
+
+            <h2>7. Contato</h2>
+            <p>
+              Se você tiver dúvidas sobre esta política de privacidade,
+              entre em contato conosco através do chat ou email.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <ModernFooter />
     </main>
   );

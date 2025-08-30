@@ -18,9 +18,39 @@ Disallow: /obrigadolead
 Disallow: /obrigadoleadqualificado
 Disallow: /obrigadotestegratis
 
-# Sitemap
+# Sitemaps
 Sitemap: https://virallead.com.br/sitemap.xml
 Sitemap: https://virallead.com.br/api/sitemap.xml
 
 # Crawl-delay para respeitar o servidor
+Crawl-delay: 1
+
+# Diretrizes específicas para bots de redes sociais
+User-agent: Twitterbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+Crawl-delay: 1
+
+User-agent: WhatsApp
+Allow: /
+Crawl-delay: 1
+
+User-agent: TelegramBot
+Allow: /
+Crawl-delay: 1
+
+# Diretrizes para Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-News
+Allow: /
 Crawl-delay: 1

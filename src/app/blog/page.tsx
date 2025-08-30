@@ -12,13 +12,43 @@ import { formatDate } from '../../utils/markdown';
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Carrega posts publicados
-    const allPosts = getPosts().filter(post => post.isPublished);
-    setPosts(allPosts);
-    setFilteredPosts(allPosts);
+    const loadPosts = async () => {
+      try {
+        setIsLoading(true);
+        // Carrega posts publicados
+        const allPosts = await getPosts();
+        const publishedPosts = allPosts.filter((post: BlogPost) => post.isPublished);
+        setPosts(publishedPosts);
+        setFilteredPosts(publishedPosts);
+      } catch (error) {
+        console.error('Erro ao carregar posts:', error);
+        setPosts([]);
+        setFilteredPosts([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPosts();
   }, []);
+
+  if (isLoading) {
+    return (
+      <main className="overflow-hidden">
+        <Header />
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center pt-32">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-300">Carregando posts...</p>
+          </div>
+        </div>
+        <ModernFooter />
+      </main>
+    );
+  }
 
   return (
     <main className="overflow-hidden">

@@ -11,7 +11,9 @@ export async function GET() {
     
     // Constrói o XML do sitemap
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- Homepage - Prioridade Máxima -->
   <url>
     <loc>https://virallead.com.br/</loc>
@@ -68,9 +70,16 @@ export async function GET() {
     <priority>0.5</priority>
   </url>`;
 
-    // Adiciona posts do blog dinamicamente
+    // Adiciona posts do blog dinamicamente com informações detalhadas
     posts.forEach(post => {
       const postDate = new Date(post.publishedAt).toISOString().split('T')[0];
+      const imageTag = post.coverImage ? `
+    <image:image>
+      <image:loc>${post.coverImage}</image:loc>
+      <image:title>${post.title}</image:title>
+      <image:caption>${post.description}</image:caption>
+    </image:image>` : '';
+      
       sitemap += `
   
   <!-- Post: ${post.title} -->
@@ -79,6 +88,15 @@ export async function GET() {
     <lastmod>${postDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Viral Lead Blog</news:name>
+        <news:language>pt</news:language>
+      </news:publication>
+      <news:publication_date>${post.publishedAt}</news:publication_date>
+      <news:title>${post.title}</news:title>
+      <news:keywords>${[...post.categories, ...post.tags].join(', ')}</news:keywords>
+    </news:news>${imageTag}
   </url>`;
     });
 

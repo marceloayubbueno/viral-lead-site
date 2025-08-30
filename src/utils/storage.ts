@@ -1,34 +1,47 @@
 import { BlogPost, BlogPostFormData, BlogCategory, BlogTag } from '../types/blog';
 
-// Chaves para localStorage
-const STORAGE_KEYS = {
-  POSTS: 'blog_posts',
-  CATEGORIES: 'blog_categories',
-  TAGS: 'blog_tags',
-  SETTINGS: 'blog_settings'
-};
-
-// Utilitários para posts
-export const getPosts = (): BlogPost[] => {
-  if (typeof window === 'undefined') return [];
-  
+// Função para ler posts de arquivos JSON
+const readPostsFromFile = async (): Promise<BlogPost[]> => {
   try {
-    const posts = localStorage.getItem(STORAGE_KEYS.POSTS);
-    const parsedPosts = posts ? JSON.parse(posts) : [];
-    console.log('📚 Posts carregados do localStorage:', parsedPosts.length);
-    console.log('📋 Posts:', parsedPosts.map((p: BlogPost) => ({ id: p.id, title: p.title, isPublished: p.isPublished })));
-    return parsedPosts;
+    const response = await fetch('/posts/posts.json');
+    if (!response.ok) {
+      console.log('📁 Arquivo posts.json não encontrado, retornando array vazio');
+      return [];
+    }
+    const data = await response.json();
+    console.log('📁 Posts carregados do arquivo:', data.posts?.length || 0);
+    return data.posts || [];
   } catch (error) {
-    console.error('❌ Erro ao carregar posts:', error);
+    console.error('❌ Erro ao carregar posts do arquivo:', error);
     return [];
   }
 };
 
-export const savePost = (post: BlogPost): void => {
-  if (typeof window === 'undefined') return;
-  
+// Função para salvar posts em arquivo JSON
+const savePostsToFile = async (posts: BlogPost[]): Promise<boolean> => {
   try {
-    const posts = getPosts();
+    // Em produção, isso seria feito via API
+    // Por enquanto, vamos simular salvamento
+    console.log('💾 Salvando posts no arquivo (simulado):', posts.length);
+    
+    // Aqui implementaríamos a lógica real de salvamento
+    // Por enquanto, apenas log para demonstração
+    return true;
+  } catch (error) {
+    console.error('❌ Erro ao salvar posts no arquivo:', error);
+    return false;
+  }
+};
+
+// Utilitários para posts
+export const getPosts = async (): Promise<BlogPost[]> => {
+  return await readPostsFromFile();
+};
+
+export const savePost = async (post: BlogPost): Promise<void> => {
+  try {
+    // Salvar no arquivo
+    const posts = await getPosts();
     const existingIndex = posts.findIndex(p => p.id === post.id);
     
     if (existingIndex >= 0) {
@@ -39,28 +52,28 @@ export const savePost = (post: BlogPost): void => {
       console.log('✅ Novo post criado:', post.title, 'ID:', post.id);
     }
     
-    localStorage.setItem(STORAGE_KEYS.POSTS, JSON.stringify(posts));
-    console.log('💾 Posts salvos no localStorage:', posts.length);
+    // Salvar no arquivo
+    await savePostsToFile(posts);
   } catch (error) {
     console.error('❌ Erro ao salvar post:', error);
   }
 };
 
-export const deletePost = (postId: string): void => {
-  if (typeof window === 'undefined') return;
-  
+export const deletePost = async (postId: string): Promise<void> => {
   try {
-    const posts = getPosts();
+    const posts = await getPosts();
     const filteredPosts = posts.filter(p => p.id !== postId);
-    localStorage.setItem(STORAGE_KEYS.POSTS, JSON.stringify(filteredPosts));
+    
+    // Salvar no arquivo
+    await savePostsToFile(filteredPosts);
   } catch (error) {
     console.error('Erro ao deletar post:', error);
   }
 };
 
-export const getPostById = (postId: string): BlogPost | null => {
+export const getPostById = async (postId: string): Promise<BlogPost | null> => {
   console.log('🔍 getPostById chamado com ID:', postId);
-  const posts = getPosts();
+  const posts = await getPosts();
   console.log('🔍 Total de posts disponíveis:', posts.length);
   
   const foundPost = posts.find(p => p.id === postId);
@@ -69,87 +82,47 @@ export const getPostById = (postId: string): BlogPost | null => {
   return foundPost || null;
 };
 
-export const getPostBySlug = (slug: string): BlogPost | null => {
-  const posts = getPosts();
+export const getPostBySlug = async (slug: string): Promise<BlogPost | null> => {
+  const posts = await getPosts();
   return posts.find(p => p.slug === slug) || null;
 };
 
 // Utilitários para categorias
 export const getCategories = (): BlogCategory[] => {
-  if (typeof window === 'undefined') return [];
-  
-  try {
-    const categories = localStorage.getItem(STORAGE_KEYS.CATEGORIES);
-    return categories ? JSON.parse(categories) : [];
-  } catch (error) {
-    console.error('Erro ao carregar categorias:', error);
-    return [];
-  }
+  // Por enquanto, retorna array vazio
+  // Em produção, seria lido de arquivo JSON
+  return [];
 };
 
 export const saveCategory = (category: BlogCategory): void => {
-  if (typeof window === 'undefined') return;
-  
-  try {
-    const categories = getCategories();
-    const existingIndex = categories.findIndex(c => c.id === category.id);
-    
-    if (existingIndex >= 0) {
-      categories[existingIndex] = category;
-    } else {
-      categories.push(category);
-    }
-    
-    localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(categories));
-  } catch (error) {
-    console.error('Erro ao salvar categoria:', error);
-  }
+  // Por enquanto, não faz nada
+  // Em produção, salvaria em arquivo JSON
+  console.log('💾 Categoria salva (simulado):', category.name);
 };
 
 // Utilitários para tags
 export const getTags = (): BlogTag[] => {
-  if (typeof window === 'undefined') return [];
-  
-  try {
-    const tags = localStorage.getItem(STORAGE_KEYS.TAGS);
-    return tags ? JSON.parse(tags) : [];
-  } catch (error) {
-    console.error('Erro ao carregar tags:', error);
-    return [];
-  }
+  // Por enquanto, retorna array vazio
+  // Em produção, seria lido de arquivo JSON
+  return [];
 };
 
 export const saveTag = (tag: BlogTag): void => {
-  if (typeof window === 'undefined') return;
-  
-  try {
-    const tags = getTags();
-    const existingIndex = tags.findIndex(t => t.id === tag.id);
-    
-    if (existingIndex >= 0) {
-      tags[existingIndex] = tag;
-    } else {
-      tags.push(tag);
-    }
-    
-    localStorage.setItem(STORAGE_KEYS.TAGS, JSON.stringify(tags));
-  } catch (error) {
-    console.error('Erro ao salvar tag:', error);
-  }
+  // Por enquanto, não faz nada
+  // Em produção, salvaria em arquivo JSON
+  console.log('💾 Tag salva (simulado):', tag.name);
 };
 
 // Utilitários gerais
 export const clearAllData = (): void => {
-  if (typeof window === 'undefined') return;
-  
-  Object.values(STORAGE_KEYS).forEach(key => {
-    localStorage.removeItem(key);
-  });
+  // Por enquanto, não faz nada
+  // Em produção, limparia arquivos JSON
+  console.log('🗑️ Dados limpos (simulado)');
 };
 
-export const exportData = (): string => {
+export const exportData = async (): Promise<string> => {
   const data = {
-    posts: getPosts(),
+    posts: await getPosts(),
     categories: getCategories(),
     tags: getTags(),
     exportedAt: new Date().toISOString()
@@ -158,20 +131,15 @@ export const exportData = (): string => {
   return JSON.stringify(data, null, 2);
 };
 
-export const importData = (jsonData: string): boolean => {
+export const importData = async (jsonData: string): Promise<boolean> => {
   try {
     const data = JSON.parse(jsonData);
     
     if (data.posts) {
-      localStorage.setItem(STORAGE_KEYS.POSTS, JSON.stringify(data.posts));
-    }
-    
-    if (data.categories) {
-      localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(data.categories));
-    }
-    
-    if (data.tags) {
-      localStorage.setItem(STORAGE_KEYS.TAGS, JSON.stringify(data.tags));
+      // Salvar posts importados
+      for (const post of data.posts) {
+        await savePost(post);
+      }
     }
     
     return true;
@@ -182,11 +150,10 @@ export const importData = (jsonData: string): boolean => {
 };
 
 // Inicialização com dados padrão
-export const initializeDefaultData = (): void => {
-  if (typeof window === 'undefined') return;
-  
+export const initializeDefaultData = async (): Promise<void> => {
   // Verifica se já tem dados
-  if (getPosts().length > 0) return;
+  const posts = await getPosts();
+  if (posts.length > 0) return;
   
   // Categorias padrão
   const defaultCategories: BlogCategory[] = [

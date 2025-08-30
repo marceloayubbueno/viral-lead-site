@@ -20,18 +20,28 @@ export default function BlogPostPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (params.slug) {
-      const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
-      const foundPost = getPostBySlug(slug);
-      
-      if (foundPost && foundPost.isPublished) {
-        setPost(foundPost);
-      } else {
-        setError('Post não encontrado ou não publicado');
+    const loadPost = async () => {
+      if (params.slug) {
+        try {
+          setIsLoading(true);
+          const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+          const foundPost = await getPostBySlug(slug);
+          
+          if (foundPost && foundPost.isPublished) {
+            setPost(foundPost);
+          } else {
+            setError('Post não encontrado ou não publicado');
+          }
+        } catch (error) {
+          console.error('Erro ao carregar post:', error);
+          setError('Erro ao carregar post');
+        } finally {
+          setIsLoading(false);
+        }
       }
-      
-      setIsLoading(false);
-    }
+    };
+
+    loadPost();
   }, [params.slug]);
 
   if (isLoading) {

@@ -1,82 +1,75 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Header from '@/components/Header';
 import ModernFooter from '@/components/ModernFooter';
+import ShareButton from '@/components/ShareButton';
+import MotionWrapper from '@/components/MotionWrapper';
 import { BlogPost } from '../../../types/blog';
 import { getPostBySlug } from '../../../utils/storage';
 import { formatDate, formatRelativeDate } from '../../../utils/markdown';
 
-export default function BlogPostPage() {
-  const params = useParams();
-  const router = useRouter();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (params.slug) {
-      const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
-      const foundPost = getPostBySlug(slug);
-      
-      if (foundPost && foundPost.isPublished) {
-        setPost(foundPost);
-      } else {
-        setError('Post não encontrado ou não publicado');
-      }
-      
-      setIsLoading(false);
-    }
-  }, [params.slug]);
-
-  if (isLoading) {
-    return (
-      <main className="overflow-hidden">
-        <Header />
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center pt-32">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-300">Carregando post...</p>
-          </div>
-        </div>
-        <ModernFooter />
-      </main>
-    );
+// Função para gerar meta tags dinâmicas para cada post
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+  const post = getPostBySlug(slug);
+  
+  if (!post || !post.isPublished) {
+    return {
+      title: 'Post não encontrado | Blog Viral Lead',
+      description: 'O post que você está procurando não existe ou não foi publicado ainda.',
+    };
   }
 
-  if (error || !post) {
-    return (
-      <main className="overflow-hidden">
-        <Header />
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center pt-32">
-          <div className="text-center max-w-md mx-auto px-4">
-            <div className="text-red-400 mb-4">
-              <svg className="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-              </svg>
-            </div>
-            <h1 className="text-3xl font-bold text-white mb-4">
-              {error || 'Post não encontrado'}
-            </h1>
-            <p className="text-gray-300 mb-8 text-lg">
-              O post que você está procurando não existe ou não foi publicado ainda.
-            </p>
-            <Link
-              href="/blog"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-200"
-            >
-              ← Voltar ao Blog
-            </Link>
-          </div>
-        </div>
-        <ModernFooter />
-      </main>
-    );
+  const postUrl = `https://virallead.com.br/blog/${post.slug}`;
+  const postImage = post.coverImage || '/images/logo-branca.svg';
+
+  return {
+    title: post.title,
+    description: post.description,
+    keywords: [...post.categories, ...post.tags, 'blog', 'marketing digital', 'viral lead'].join(', '),
+    authors: [{ name: post.author }],
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: postUrl,
+      siteName: 'Viral Lead',
+      images: [
+        {
+          url: postImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+      locale: 'pt_BR',
+      type: 'article',
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+      authors: [post.author],
+      tags: post.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      images: [postImage],
+    },
+    alternates: {
+      canonical: postUrl,
+    },
+  };
+}
+
+// Componente principal do post
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+  const post = getPostBySlug(slug);
+  
+  if (!post || !post.isPublished) {
+    notFound();
   }
 
   return (
@@ -87,40 +80,19 @@ export default function BlogPostPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black pt-32 pb-24">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div 
+          <div 
             className="absolute -top-40 -right-32 w-80 h-80 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-full opacity-20 blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          ></motion.div>
-          <motion.div 
+          ></div>
+          <div 
             className="absolute -bottom-40 -left-32 w-80 h-80 bg-gradient-to-br from-cyan-600 to-blue-500 rounded-full opacity-30 blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.3, 0.2, 0.3],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          ></motion.div>
+          ></div>
         </div>
 
         <div className="container relative">
           {/* Breadcrumb */}
-          <motion.nav 
+          <nav 
             className="flex mb-8"
             aria-label="Breadcrumb"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
           >
             <ol className="flex items-center space-x-4">
               <li>
@@ -155,14 +127,11 @@ export default function BlogPostPage() {
                 </div>
               </li>
             </ol>
-          </motion.nav>
+          </nav>
 
           {/* Header do Post */}
-          <motion.div 
+          <div 
             className="text-center max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
           >
             {/* Categorias */}
             {post.categories.length > 0 && (
@@ -214,19 +183,15 @@ export default function BlogPostPage() {
             <div className="mt-4 text-sm text-gray-500">
               {formatRelativeDate(post.publishedAt)}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Conteúdo Principal */}
       <section className="bg-gray-900 py-24">
         <div className="px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <div 
             className="w-full"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
           >
             {/* Imagem de Capa */}
             {post.coverImage && (
@@ -311,26 +276,11 @@ export default function BlogPostPage() {
               <div className="mt-12 pt-8 border-t border-gray-700">
                 <h3 className="text-lg font-semibold text-white mb-4">Compartilhar</h3>
                 <div className="flex space-x-4">
-                  <button
-                    onClick={() => {
-                      if (navigator.share) {
-                        navigator.share({
-                          title: post.title,
-                          text: post.description,
-                          url: window.location.href
-                        });
-                      } else {
-                        navigator.clipboard.writeText(window.location.href);
-                        alert('Link copiado para a área de transferência!');
-                      }
-                    }}
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white rounded-xl font-medium transition-all duration-200 group"
-                  >
-                    <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                    </svg>
-                    Compartilhar
-                  </button>
+                  <ShareButton 
+                    title={post.title}
+                    description={post.description}
+                    url={`https://virallead.com.br/blog/${post.slug}`}
+                  />
                 </div>
               </div>
             </article>
@@ -347,7 +297,7 @@ export default function BlogPostPage() {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Páginas principais
+Allow: /blog
+Allow: /calculadora
+Allow: /apresentacao
+Allow: /testegratis
+Allow: /chat
+Allow: /privacidade
+
+# Bloquear páginas administrativas
+Disallow: /admin/
+Disallow: /api/
+
+# Bloquear páginas de agradecimento (protegidas)
+Disallow: /obrigadolead
+Disallow: /obrigadoleadqualificado
+Disallow: /obrigadotestegratis
+
+# Sitemap
+Sitemap: https://virallead.com.br/sitemap.xml
+Sitemap: https://virallead.com.br/api/sitemap.xml
+
+# Crawl-delay para respeitar o servidor
+Crawl-delay: 1

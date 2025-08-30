@@ -3,16 +3,16 @@ import { BlogPost, BlogPostFormData, BlogCategory, BlogTag } from '../types/blog
 // Função para ler posts de arquivos JSON
 const readPostsFromFile = async (): Promise<BlogPost[]> => {
   try {
-    const response = await fetch('/posts/posts.json');
+    const response = await fetch('/api/posts');
     if (!response.ok) {
-      console.log('📁 Arquivo posts.json não encontrado, retornando array vazio');
+      console.log('📁 API posts não encontrada, retornando array vazio');
       return [];
     }
     const data = await response.json();
-    console.log('📁 Posts carregados do arquivo:', data.posts?.length || 0);
+    console.log('📁 Posts carregados da API:', data.posts?.length || 0);
     return data.posts || [];
   } catch (error) {
-    console.error('❌ Erro ao carregar posts do arquivo:', error);
+    console.error('❌ Erro ao carregar posts da API:', error);
     return [];
   }
 };
@@ -20,15 +20,23 @@ const readPostsFromFile = async (): Promise<BlogPost[]> => {
 // Função para salvar posts em arquivo JSON
 const savePostsToFile = async (posts: BlogPost[]): Promise<boolean> => {
   try {
-    // Em produção, isso seria feito via API
-    // Por enquanto, vamos simular salvamento
-    console.log('💾 Salvando posts no arquivo (simulado):', posts.length);
-    
-    // Aqui implementaríamos a lógica real de salvamento
-    // Por enquanto, apenas log para demonstração
+    const response = await fetch('/api/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ posts }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('💾 Posts salvos via API:', result.message);
     return true;
   } catch (error) {
-    console.error('❌ Erro ao salvar posts no arquivo:', error);
+    console.error('❌ Erro ao salvar posts via API:', error);
     return false;
   }
 };
@@ -40,7 +48,6 @@ export const getPosts = async (): Promise<BlogPost[]> => {
 
 export const savePost = async (post: BlogPost): Promise<void> => {
   try {
-    // Salvar no arquivo
     const posts = await getPosts();
     const existingIndex = posts.findIndex(p => p.id === post.id);
     
@@ -52,7 +59,7 @@ export const savePost = async (post: BlogPost): Promise<void> => {
       console.log('✅ Novo post criado:', post.title, 'ID:', post.id);
     }
     
-    // Salvar no arquivo
+    // Salvar via API
     await savePostsToFile(posts);
   } catch (error) {
     console.error('❌ Erro ao salvar post:', error);
@@ -64,7 +71,7 @@ export const deletePost = async (postId: string): Promise<void> => {
     const posts = await getPosts();
     const filteredPosts = posts.filter(p => p.id !== postId);
     
-    // Salvar no arquivo
+    // Salvar via API
     await savePostsToFile(filteredPosts);
   } catch (error) {
     console.error('Erro ao deletar post:', error);

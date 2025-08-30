@@ -89,9 +89,14 @@ export const getPostBySlug = async (slug: string): Promise<BlogPost | null> => {
 
 // Utilitários para categorias
 export const getCategories = (): BlogCategory[] => {
-  // Por enquanto, retorna array vazio
-  // Em produção, seria lido de arquivo JSON
-  return [];
+  // Retorna categorias padrão para o editor funcionar
+  return [
+    { id: '1', name: 'Marketing Digital', slug: 'marketing-digital', description: 'Estratégias de marketing digital' },
+    { id: '2', name: 'Afiliados', slug: 'afiliados', description: 'Programas de afiliados' },
+    { id: '3', name: 'SaaS', slug: 'saas', description: 'Software as a Service' },
+    { id: '4', name: 'Estratégia', slug: 'estrategia', description: 'Estratégias de negócio' },
+    { id: '5', name: 'Tecnologia', slug: 'tecnologia', description: 'Tecnologia e inovação' }
+  ];
 };
 
 export const saveCategory = (category: BlogCategory): void => {
@@ -102,9 +107,15 @@ export const saveCategory = (category: BlogCategory): void => {
 
 // Utilitários para tags
 export const getTags = (): BlogTag[] => {
-  // Por enquanto, retorna array vazio
-  // Em produção, seria lido de arquivo JSON
-  return [];
+  // Retorna tags padrão para o editor funcionar
+  return [
+    { id: '1', name: 'Estratégia', slug: 'estrategia', color: '#3B82F6' },
+    { id: '2', name: 'Conversão', slug: 'conversao', color: '#10B981' },
+    { id: '3', name: 'Growth', slug: 'growth', color: '#F59E0B' },
+    { id: '4', name: 'Marketing', slug: 'marketing', color: '#8B5CF6' },
+    { id: '5', name: 'Vendas', slug: 'vendas', color: '#EF4444' },
+    { id: '6', name: 'Automação', slug: 'automacao', color: '#06B6D4' }
+  ];
 };
 
 export const saveTag = (tag: BlogTag): void => {

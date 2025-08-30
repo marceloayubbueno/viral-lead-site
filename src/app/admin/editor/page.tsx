@@ -33,12 +33,17 @@ export default function AdminEditorPage() {
     }
 
     // Carrega posts
-    loadPosts();
+    loadPosts().catch(console.error);
   }, [router]);
 
-  const loadPosts = () => {
-    const allPosts = getPosts();
-    setPosts(allPosts);
+  const loadPosts = async () => {
+    try {
+      const allPosts = await getPosts();
+      setPosts(allPosts);
+    } catch (error) {
+      console.error('Erro ao carregar posts:', error);
+      setPosts([]);
+    }
   };
 
   const handleLogout = () => {
@@ -58,10 +63,10 @@ export default function AdminEditorPage() {
     setIsCreatingNew(false);
   };
 
-  const handleDeletePost = (postId: string) => {
+  const handleDeletePost = async (postId: string) => {
     if (confirm('Tem certeza que deseja deletar este post? Esta ação não pode ser desfeita.')) {
-      deletePost(postId);
-      loadPosts();
+      await deletePost(postId);
+      await loadPosts();
       
       if (selectedPost?.id === postId) {
         setSelectedPost(null);
@@ -70,8 +75,8 @@ export default function AdminEditorPage() {
     }
   };
 
-  const handleSavePost = (post: BlogPost) => {
-    loadPosts();
+  const handleSavePost = async (post: BlogPost) => {
+    await loadPosts();
     
     if (isCreatingNew) {
       setIsCreatingNew(false);

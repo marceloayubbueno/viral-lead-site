@@ -40,30 +40,34 @@ export default function BlogEditor({ postId, onSave, onCancel, className = '' }:
 
   useEffect(() => {
     // Inicializa dados padrão (categorias e tags)
-    initializeDefaultData();
+    initializeDefaultData().catch(console.error);
 
     // Se editando post existente, carrega dados
     if (postId) {
-      const existingPost = getPostById(postId);
-      if (existingPost) {
-        setEditorState(prev => ({
-          ...prev,
-          currentPost: existingPost,
-          isEditing: true
-        }));
-        
-        setFormData({
-          title: existingPost.title,
-          description: existingPost.description,
-          content: existingPost.content,
-          author: existingPost.author,
-          categories: existingPost.categories,
-          tags: existingPost.tags,
-          coverImage: existingPost.coverImage
-        });
-        
-        setCurrentStep('content'); // Vai direto para o conteúdo se editando
-      }
+      const loadExistingPost = async () => {
+        const existingPost = await getPostById(postId);
+        if (existingPost) {
+          setEditorState(prev => ({
+            ...prev,
+            currentPost: existingPost,
+            isEditing: true
+          }));
+          
+          setFormData({
+            title: existingPost.title,
+            description: existingPost.description,
+            content: existingPost.content,
+            author: existingPost.author,
+            categories: existingPost.categories,
+            tags: existingPost.tags,
+            coverImage: existingPost.coverImage
+          });
+          
+          setCurrentStep('content'); // Vai direto para o conteúdo se editando
+        }
+      };
+      
+      loadExistingPost().catch(console.error);
     }
   }, [postId]);
 
@@ -117,7 +121,7 @@ export default function BlogEditor({ postId, onSave, onCancel, className = '' }:
       }
 
       // Salva no storage
-      savePost(post);
+      await savePost(post);
 
       // Atualiza estado
       setEditorState(prev => ({

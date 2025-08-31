@@ -1,11 +1,11 @@
 "use client";
 
-import ChatBot from '@/components/ChatBot';
+import ChatBotFullscreen from '@/components/ChatBotFullscreen';
 
 export default function ChatPage() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <ChatBot />
+    <div style={{ margin: 0, padding: 0, height: '100vh', width: '100vw', overflow: 'hidden' }}>
+      <ChatBotFullscreen />
     </div>
   );
 } 

@@ -7,7 +7,7 @@ import HowItWorks from '@/components/HowItWorks'
 import Results from '@/components/Results'
 import ModernPricing from '@/components/ModernPricing'
 import ModernFooter from '@/components/ModernFooter'
-import ChatBot from '@/components/ChatBot'
+import ChatBotFloating from '@/components/ChatBotFloating'
 import { useState } from 'react'
 
 export default function Home() {
@@ -83,7 +83,7 @@ export default function Home() {
               ...mobileStyle,
             }}
           >
-            <ChatBot />
+            <ChatBotFloating />
           </div>
         )}
       </div>

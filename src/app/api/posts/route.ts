@@ -3,7 +3,8 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { BlogPost } from '../../../types/blog';
 
-const POSTS_FILE_PATH = path.join(process.cwd(), 'public', 'posts', 'posts.json');
+// Usar pasta temporária que a Vercel permite escrever
+const POSTS_FILE_PATH = path.join('/tmp', 'posts.json');
 
 // Função para validar estrutura do BlogPost
 function validateBlogPost(post: any): post is BlogPost {
@@ -50,6 +51,7 @@ function validateUniqueIds(posts: BlogPost[]): { isValid: boolean; error?: strin
 // GET - Buscar todos os posts
 export async function GET() {
   try {
+    // Tenta ler do arquivo temporário
     const fileContent = await fs.readFile(POSTS_FILE_PATH, 'utf-8');
     const data = JSON.parse(fileContent);
     
@@ -126,16 +128,12 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Cria o diretório se não existir
-    const dir = path.dirname(POSTS_FILE_PATH);
-    await fs.mkdir(dir, { recursive: true });
-
     // Ordena posts por data de publicação
     const sortedPosts = posts.sort((a: BlogPost, b: BlogPost) => 
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
     );
 
-    // Salva os posts
+    // Salva os posts no arquivo temporário
     const data = {
       posts: sortedPosts,
       lastUpdated: new Date().toISOString(),

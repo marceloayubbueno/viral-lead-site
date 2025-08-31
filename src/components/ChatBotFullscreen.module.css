@@ -183,6 +183,10 @@
   opacity: 1 !important;
   position: relative !important;
   z-index: 100 !important;
+  min-height: 60px !important;
+  padding: 0.5rem !important;
+  background-color: #18181b !important;
+  border-top: 1px solid #333 !important;
 }
 @media (max-width: 480px) {
   .chatbotContainer {
@@ -215,11 +219,17 @@
   .chatbotForm {
     /* Removida borda de debug */
     flex-shrink: 0;
-    position: relative;
-    z-index: 10;
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 1000 !important;
     background: #18181b !important;
     border-top: 1px solid #333 !important;
-    padding: 0.5rem !important;
+    padding: 1rem !important;
+    min-height: 70px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    margin-bottom: env(safe-area-inset-bottom) !important;
   }
   .chatbotInput {
     font-size: 0.98rem;

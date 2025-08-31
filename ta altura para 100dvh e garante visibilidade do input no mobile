@@ -1,0 +1,3 @@
+[33m3bc8227[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fix: força visibilidade do campo de digitação com z-index alto e CSS específico para mobile
+[33m6b3c868[m fix: força position fixed e altura total para resolver campo de digitação cortado no mobile
+[33m0f2ff95[m fix: corrige responsividade mobile do ChatBotFullscreen - elimina rolagem lateral e otimiza altura para dispositivos móveis

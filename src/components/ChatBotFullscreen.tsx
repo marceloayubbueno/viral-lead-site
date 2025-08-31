@@ -199,13 +199,32 @@ const ChatBotFullscreen = () => {
   };
 
   return (
-    <div className={`${styles.chatbotContainer} ${styles.fullscreen}`} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <div className={`${styles.chatbotContainer} ${styles.fullscreen}`} style={{ 
+      height: '100dvh', 
+      width: '100vw', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      position: 'fixed', 
+      top: 0, 
+      left: 0, 
+      right: 0, 
+      bottom: 0,
+      backgroundColor: '#18181b',
+      overflow: 'hidden',
+      paddingBottom: 'env(safe-area-inset-bottom)'
+    }}>
       {/* Header do Chatbot */}
       <div className={styles.chatbotHeader} style={{ flex: '0 0 auto' }}>
         <span>Viral Lead</span>
       </div>
       {/* Área de mensagens */}
-      <div className={styles.chatbotMessages} style={{ flex: '1 1 auto', overflowY: 'auto', minHeight: 0 }}>
+      <div className={styles.chatbotMessages} style={{ 
+        flex: '1 1 auto', 
+        overflowY: 'auto', 
+        minHeight: 0, 
+        maxHeight: 'calc(100dvh - 160px)',
+        paddingBottom: '20px'
+      }}>
         {messages.map((msg, idx) => (
           <div
             key={idx}
@@ -240,7 +259,20 @@ const ChatBotFullscreen = () => {
         <div ref={messagesEndRef} />
       </div>
       {/* Input do usuário */}
-      <form className={styles.chatbotForm} style={{ flex: '0 0 auto' }} onSubmit={handleSend}>
+      <form className={styles.chatbotForm} style={{ 
+        flex: '0 0 auto', 
+        position: 'sticky',
+        bottom: 0,
+        zIndex: 1000, 
+        backgroundColor: '#18181b', 
+        borderTop: '1px solid #333', 
+        padding: '1rem',
+        minHeight: '70px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        marginBottom: 'env(safe-area-inset-bottom)'
+      }} onSubmit={handleSend}>
         <input
           type="text"
           className={styles.chatbotInput}

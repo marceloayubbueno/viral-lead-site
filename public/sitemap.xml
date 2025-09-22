@@ -16,6 +16,14 @@
     <priority>0.8</priority>
   </url>
   
+  <!-- Post: Estratégias de Indicação de Clientes -->
+  <url>
+    <loc>https://virallead.com.br/blog/estrategias-indicacao-clientes-2025</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
   <!-- Calculadora -->
   <url>
     <loc>https://virallead.com.br/calculadora</loc>

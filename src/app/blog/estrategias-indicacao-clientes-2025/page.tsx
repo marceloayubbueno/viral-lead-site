@@ -14,6 +14,7 @@ export default function EstrategiasIndicacaoClientes2025Page() {
     title: "Estratégias de Indicação de Clientes: Guia Definitivo 2025 | Viral Lead",
     slug: "estrategias-indicacao-clientes-2025",
     description: "Descubra as melhores estratégias de indicação de clientes que estão revolucionando o marketing digital. Guia completo com casos reais e ROI de 8:1.",
+    updatedAt: new Date().toISOString(),
     content: `# Estratégias de Indicação de Clientes: Guia Definitivo 2025
 
 **Se você está buscando uma forma de aumentar suas vendas sem depender exclusivamente de anúncios pagos**, as estratégias de indicação de clientes representam uma das oportunidades mais promissoras do marketing digital atual. Empresas visionárias já descobriram que **transformar clientes satisfeitos em embaixadores da marca** pode gerar **crescimento exponencial** com **custos de aquisição até 70% menores** que métodos tradicionais.

@@ -1,6 +1,23 @@
 {
   "posts": [
     {
+      "id": "post_1758546527451_q6i1hhxb4",
+      "title": "Como Criar Posts HTML para o Blog",
+      "slug": "como-criar-posts-html-para-o-blog",
+      "description": "Aprenda como criar posts em HTML e fazer deploy automático para o blog usando nosso script simples.",
+      "content": "Como Criar Posts HTML para o Blog\r\n\n    # Como Criar Posts HTML para o Blog\n\n    Este é um exemplo de como criar posts em HTML para o blog. O script de deploy irá converter automaticamente este HTML para Markdown e adicionar ao sistema.\n\n    ## Vantagens desta Abordagem\n\n        - **Simplicidade:** Crie posts em HTML no seu editor preferido\n\r\n        - **Automação:** Deploy automático com um comando\n\r\n        - **SEO:** Meta tags automáticas\n\r\n        - **Zero Backend:** Não precisa de banco de dados\n\n    ## Como Usar\n\n        1. $1\n\r\n        2. $1\n\r\n        3. $1\n\n    ### Exemplo de Código\n\n    O script converte automaticamente:\n\n        - Títulos HTML para Markdown\n\r\n        - Parágrafos para texto simples\n\r\n        - Listas para formato Markdown\n\r\n        - Links para formato Markdown\n\n    Para mais informações, visite nosso [site](https://virallead.com.br).\n\n    ## Conclusão\n\n    Esta abordagem permite criar conteúdo de forma rápida e eficiente, mantendo a simplicidade e evitando a complexidade de sistemas de backend.",
+      "author": "Marcelo Ayub",
+      "publishedAt": "2025-09-22T13:08:47.451Z",
+      "updatedAt": "2025-09-22T13:08:47.454Z",
+      "categories": [
+        "1"
+      ],
+      "tags": [],
+      "coverImage": "",
+      "isPublished": true,
+      "readTime": 2
+    },
+    {
       "id": "post_1756597140018_fkoos0atx",
       "title": "Canais de captação de leads mais poderosos em 2025",
       "slug": "canais-de-captacao-de-leads-mais-poderosos-em-2025",
@@ -18,6 +35,6 @@
       "readTime": 3
     }
   ],
-  "lastUpdated": "2025-08-30T23:39:00.094Z",
-  "totalPosts": 1
+  "lastUpdated": "2025-09-22T13:08:47.457Z",
+  "totalPosts": 2
 }

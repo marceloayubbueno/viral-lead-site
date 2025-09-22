@@ -3,16 +3,27 @@ import { BlogPost, BlogPostFormData, BlogCategory, BlogTag } from '../types/blog
 // Função para ler posts de arquivos JSON
 const readPostsFromFile = async (): Promise<BlogPost[]> => {
   try {
+    // Primeiro tenta ler da API
     const response = await fetch('/api/posts');
-    if (!response.ok) {
-      console.log('📁 API posts não encontrada, retornando array vazio');
-      return [];
+    if (response.ok) {
+      const data = await response.json();
+      console.log('📁 Posts carregados da API:', data.posts?.length || 0);
+      return data.posts || [];
     }
-    const data = await response.json();
-    console.log('📁 Posts carregados da API:', data.posts?.length || 0);
-    return data.posts || [];
+    
+    // Se API falhar, tenta ler do arquivo estático
+    console.log('📁 API não disponível, tentando arquivo estático...');
+    const staticResponse = await fetch('/posts/posts.json');
+    if (staticResponse.ok) {
+      const data = await staticResponse.json();
+      console.log('📁 Posts carregados do arquivo estático:', data.posts?.length || 0);
+      return data.posts || [];
+    }
+    
+    console.log('📁 Nenhuma fonte de posts encontrada, retornando array vazio');
+    return [];
   } catch (error) {
-    console.error('❌ Erro ao carregar posts da API:', error);
+    console.error('❌ Erro ao carregar posts:', error);
     return [];
   }
 };

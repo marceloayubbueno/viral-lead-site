@@ -21,8 +21,30 @@ export default function BlogPage() {
         // Carrega posts publicados
         const allPosts = await getPosts();
         const publishedPosts = allPosts.filter((post: BlogPost) => post.isPublished);
-        setPosts(publishedPosts);
-        setFilteredPosts(publishedPosts);
+        
+        // Adiciona posts estáticos
+        const staticPosts: BlogPost[] = [
+          {
+            id: "post_estrategias_indicacao_clientes_2025",
+            title: "Estratégias de Indicação de Clientes: Guia Definitivo 2025",
+            slug: "estrategias-indicacao-clientes-2025",
+            description: "Descubra as melhores estratégias de indicação de clientes que estão revolucionando o marketing digital. Guia completo com casos reais e ROI de 8:1.",
+            content: "",
+            author: "Marcelo Ayub",
+            publishedAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+            categories: ["Marketing Digital", "Estratégias de Vendas"],
+            tags: ["Indicação de Clientes", "Marketing Digital", "Estratégias de Vendas", "Crescimento Empresarial", "ROI"],
+            coverImage: "",
+            isPublished: true,
+            readTime: 12
+          }
+        ];
+        
+        // Combina posts dinâmicos com posts estáticos
+        const allPostsCombined = [...staticPosts, ...publishedPosts];
+        setPosts(allPostsCombined);
+        setFilteredPosts(allPostsCombined);
       } catch (error) {
         console.error('Erro ao carregar posts:', error);
         setPosts([]);

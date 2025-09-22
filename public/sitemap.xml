@@ -24,6 +24,30 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- Post: Marketing de Indicação -->
+  <url>
+    <loc>https://virallead.com.br/blog/marketing-indicacao-guia-completo-2025</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Post: Sistema de Indicações -->
+  <url>
+    <loc>https://virallead.com.br/blog/sistema-indicacoes-guia-completo-2025</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Post: Referral Marketing -->
+  <url>
+    <loc>https://virallead.com.br/blog/referral-marketing-como-funciona-2025</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
   <!-- Calculadora -->
   <url>
     <loc>https://virallead.com.br/calculadora</loc>

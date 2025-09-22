@@ -38,6 +38,51 @@ export default function BlogPage() {
             coverImage: "",
             isPublished: true,
             readTime: 12
+          },
+          {
+            id: "post_marketing_indicacao_guia_completo_2025",
+            title: "Marketing de Indicação: Guia Completo 2025",
+            slug: "marketing-indicacao-guia-completo-2025",
+            description: "Descubra como implementar marketing de indicação que gera 3x mais vendas. Guia prático com casos reais, ROI de 5:1 e estratégias comprovadas.",
+            content: "",
+            author: "Marcelo Ayub",
+            publishedAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+            categories: ["Marketing Digital", "Vendas"],
+            tags: ["Marketing de Indicação", "Referral", "Vendas", "Crescimento", "ROI"],
+            coverImage: "",
+            isPublished: true,
+            readTime: 10
+          },
+          {
+            id: "post_sistema_indicacoes_guia_completo_2025",
+            title: "Sistema de Indicações: Guia Completo 2025",
+            slug: "sistema-indicacoes-guia-completo-2025",
+            description: "Aprenda como criar um sistema de indicações que transforma clientes em vendedores. Guia prático com ferramentas, métricas e casos reais de sucesso.",
+            content: "",
+            author: "Marcelo Ayub",
+            publishedAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+            categories: ["Marketing Digital", "Vendas"],
+            tags: ["Sistema de Indicações", "Referral", "Vendas", "Crescimento", "ROI"],
+            coverImage: "",
+            isPublished: true,
+            readTime: 8
+          },
+          {
+            id: "post_referral_marketing_como_funciona_2025",
+            title: "Referral Marketing: Como Funciona na Prática 2025",
+            slug: "referral-marketing-como-funciona-2025",
+            description: "Entenda como o referral marketing funciona na prática e como implementar em sua empresa. Estratégias comprovadas para transformar clientes em vendedores.",
+            content: "",
+            author: "Marcelo Ayub",
+            publishedAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+            categories: ["Marketing Digital", "Vendas"],
+            tags: ["Referral Marketing", "Indicações", "Vendas", "Crescimento", "ROI"],
+            coverImage: "",
+            isPublished: true,
+            readTime: 9
           }
         ];
         

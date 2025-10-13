@@ -6,14 +6,91 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import ModernFooter from '@/components/ModernFooter';
 import ChatBotWrapper from '@/components/ChatBotWrapper';
+import BlogCategorySection from '@/components/BlogCategorySection';
 import { BlogPost } from '../../types/blog';
 import { getPosts } from '../../utils/storage';
 import { formatDate } from '../../utils/markdown';
+import { 
+  Newspaper, 
+  Target, 
+  TrendingUp, 
+  Gift, 
+  Bot, 
+  Settings, 
+  BarChart3, 
+  Shield
+} from 'lucide-react';
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Função para categorizar posts
+  const categorizePosts = (allPosts: BlogPost[]) => {
+    const categories = {
+      vendas: allPosts.filter(post => 
+        post.categories.some(cat => 
+          ['Vendas', 'Marketing Digital'].includes(cat)
+        ) || 
+        post.tags.some(tag => 
+          ['Indicação de Clientes', 'Marketing de Indicação', 'Referral', 'Vendas', 'Marketing Boca a Boca'].includes(tag)
+        )
+      ),
+      
+      crescimento: allPosts.filter(post => 
+        post.categories.some(cat => 
+          ['Crescimento', 'Estratégia'].includes(cat)
+        ) || 
+        post.tags.some(tag => 
+          ['Alavancas de Crescimento', 'Member Get Member', 'MGM', 'Embaixadores de Marca', 'Promotores', 'Escalabilidade'].includes(tag)
+        )
+      ),
+      
+      recompensas: allPosts.filter(post => 
+        post.tags.some(tag => 
+          ['Recompensas', 'Indique e Ganhe', 'Programa de Indicação', 'Incentivos'].includes(tag)
+        )
+      ),
+      
+      ia: allPosts.filter(post => 
+        post.categories.some(cat => 
+          ['Tecnologia', 'Inovação'].includes(cat)
+        ) || 
+        post.tags.some(tag => 
+          ['Inteligência Artificial', 'IA', 'Automação', 'Tendências 2025', 'Inovação', 'Tecnologia'].includes(tag)
+        )
+      ),
+      
+      automacao: allPosts.filter(post => 
+        post.categories.some(cat => 
+          ['Automação', 'Tecnologia'].includes(cat)
+        ) || 
+        post.tags.some(tag => 
+          ['Automação', 'Workflows', 'Eficiência', 'Ferramentas', 'Software', 'Plataformas'].includes(tag)
+        )
+      ),
+      
+      marketingDigital: allPosts.filter(post => 
+        post.categories.some(cat => 
+          ['Marketing Digital'].includes(cat)
+        ) || 
+        post.tags.some(tag => 
+          ['Marketing Digital', 'Estratégias de Vendas', 'Growth Hacking'].includes(tag)
+        )
+      ),
+      
+      gestao: allPosts.filter(post => 
+        post.categories.some(cat => 
+          ['Compliance', 'Legal'].includes(cat)
+        ) || 
+        post.tags.some(tag => 
+          ['LGPD', 'Privacidade', 'Compliance', 'Legal', 'Proteção de Dados'].includes(tag)
+        )
+      )
+    };
+
+    return categories;
+  };
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -285,11 +362,9 @@ export default function BlogPage() {
         // Combina posts dinâmicos com posts estáticos
         const allPostsCombined = [...staticPosts, ...publishedPosts];
         setPosts(allPostsCombined);
-        setFilteredPosts(allPostsCombined);
       } catch (error) {
         console.error('Erro ao carregar posts:', error);
         setPosts([]);
-        setFilteredPosts([]);
       } finally {
         setIsLoading(false);
       }
@@ -297,6 +372,10 @@ export default function BlogPage() {
 
     loadPosts();
   }, []);
+
+  // Categorizar posts
+  const categorizedPosts = categorizePosts(posts);
+  const recentPosts = posts.slice(0, 6); // Últimos 6 posts
 
   if (isLoading) {
     return (
@@ -375,129 +454,85 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Lista de Posts */}
-      <section className="bg-gray-900 py-24">
-        <div className="container">
-          {filteredPosts.length === 0 ? (
-            <motion.div 
-              className="text-center py-20"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="text-gray-400 mb-4">
-                <svg className="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                {posts.length === 0 ? 'Nenhum post publicado ainda' : 'Nenhum post encontrado'}
-              </h3>
-              <p className="text-gray-400 text-lg">
-                {posts.length === 0 
-                  ? 'Os posts aparecerão aqui assim que forem publicados.' 
-                  : 'Tente ajustar os filtros de busca.'
-                }
-              </p>
-            </motion.div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post, index) => (
-                <motion.article 
-                  key={post.id} 
-                  className="bg-gray-800 rounded-2xl overflow-hidden hover:bg-gray-700 transition-all duration-300 group border border-gray-700 hover:border-blue-500"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8 }}
-                >
-                  {/* Imagem de Capa */}
-                  {post.coverImage && (
-                    <div className="relative overflow-hidden">
-                      <img
-                        src={post.coverImage}
-                        alt={post.title}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
-                    </div>
-                  )}
+      {/* Posts Mais Recentes */}
+      <BlogCategorySection
+        title="Posts Mais Recentes"
+        subtitle="Últimos conteúdos publicados no blog Viral Lead"
+        posts={recentPosts}
+        icon={Newspaper}
+        color="bg-gradient-to-r from-blue-600 to-cyan-600"
+        maxPosts={3}
+      />
 
-                  {/* Conteúdo */}
-                  <div className="p-6">
-                    {/* Categorias */}
-                    {post.categories.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {post.categories.map(category => (
-                          <span
-                            key={category}
-                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-600/20 text-blue-400 border border-blue-500/30"
-                          >
-                            {category}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+      {/* Vendas & Indicações */}
+      <BlogCategorySection
+        title="VENDAS"
+        subtitle="Vendas por Indicação"
+        posts={categorizedPosts.vendas}
+        icon={Target}
+        color="bg-gradient-to-r from-red-600 to-pink-600"
+        maxPosts={3}
+      />
 
-                    {/* Título */}
-                    <h2 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors duration-200">
-                      <Link href={`/blog/${post.slug}`}>
-                        {post.title}
-                      </Link>
-                    </h2>
+      {/* Crescimento & Escala */}
+      <BlogCategorySection
+        title="CRESCIMENTO"
+        subtitle="Alavancas de Crescimento"
+        posts={categorizedPosts.crescimento}
+        icon={TrendingUp}
+        color="bg-gradient-to-r from-green-600 to-emerald-600"
+        maxPosts={3}
+      />
 
-                    {/* Descrição */}
-                    <p className="text-gray-400 mb-4 line-clamp-3 leading-relaxed">
-                      {post.description}
-                    </p>
+      {/* Recompensas & Incentivos */}
+      <BlogCategorySection
+        title="RECOMPENSAS"
+        subtitle="Recompensas e Incentivos"
+        posts={categorizedPosts.recompensas}
+        icon={Gift}
+        color="bg-gradient-to-r from-yellow-600 to-orange-600"
+        maxPosts={3}
+      />
 
-                    {/* Meta Informações */}
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                      <div className="flex items-center space-x-4">
-                        <span>Por {post.author}</span>
-                        <span>•</span>
-                        <span>{formatDate(post.publishedAt)}</span>
-                      </div>
-                      <span className="text-blue-400 font-medium">{post.readTime} min</span>
-                    </div>
+      {/* IA & Tecnologia */}
+      <BlogCategorySection
+        title="IA & TECNOLOGIA"
+        subtitle="Inteligência Artificial e Inovação"
+        posts={categorizedPosts.ia}
+        icon={Bot}
+        color="bg-gradient-to-r from-purple-600 to-indigo-600"
+        maxPosts={3}
+      />
 
-                    {/* Tags */}
-                    {post.tags.length > 0 && (
-                      <div className="pt-4 border-t border-gray-700">
-                        <div className="flex flex-wrap gap-1">
-                          {post.tags.map(tag => (
-                            <span
-                              key={tag}
-                              className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300"
-                            >
-                              #{tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+      {/* Automação & Ferramentas */}
+      <BlogCategorySection
+        title="AUTOMAÇÃO"
+        subtitle="Automação e Ferramentas"
+        posts={categorizedPosts.automacao}
+        icon={Settings}
+        color="bg-gradient-to-r from-teal-600 to-cyan-600"
+        maxPosts={3}
+      />
 
-                    {/* Botão Ler Mais */}
-                    <div className="mt-6">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors duration-200 group"
-                      >
-                        Ler mais
-                        <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+      {/* Marketing Digital */}
+      <BlogCategorySection
+        title="MARKETING DIGITAL"
+        subtitle="Estratégias de Marketing Digital"
+        posts={categorizedPosts.marketingDigital}
+        icon={BarChart3}
+        color="bg-gradient-to-r from-indigo-600 to-purple-600"
+        maxPosts={3}
+      />
+
+      {/* Gestão & Compliance */}
+      <BlogCategorySection
+        title="GESTÃO"
+        subtitle="Gestão e Compliance"
+        posts={categorizedPosts.gestao}
+        icon={Shield}
+        color="bg-gradient-to-r from-gray-600 to-slate-600"
+        maxPosts={3}
+      />
 
       <ModernFooter />
       <ChatBotWrapper />

@@ -8,6 +8,8 @@ import remarkGfm from 'remark-gfm';
 import Header from '@/components/Header';
 import ModernFooter from '@/components/ModernFooter';
 import ShareButton from '@/components/ShareButton';
+import ChatBotWrapper from '@/components/ChatBotWrapper';
+import MarkdownWithCTA from '@/components/MarkdownWithCTA';
 import { BlogPost } from '../../../types/blog';
 import { getPostBySlug } from '../../../utils/storage';
 import { formatDate, formatRelativeDate } from '../../../utils/markdown';
@@ -55,6 +57,7 @@ export default function BlogPostPage() {
           </div>
         </div>
         <ModernFooter />
+        <ChatBotWrapper />
       </main>
     );
   }
@@ -85,6 +88,7 @@ export default function BlogPostPage() {
           </div>
         </div>
         <ModernFooter />
+        <ChatBotWrapper />
       </main>
     );
   }
@@ -238,54 +242,10 @@ export default function BlogPostPage() {
 
               {/* Conteúdo do Post */}
               <article className="bg-gray-800 rounded-2xl p-8 border border-gray-700 w-full">
-                <div className="markdown-content">
-                  <ReactMarkdown 
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      // Usa as mesmas classes CSS compartilhadas
-                      table: ({node, ...props}) => (
-                        <div className="table-wrapper">
-                          <table {...props} />
-                        </div>
-                      ),
-                      th: ({node, ...props}) => (
-                        <th {...props} />
-                      ),
-                      td: ({node, ...props}) => (
-                        <td {...props} />
-                      ),
-                      h1: ({node, ...props}) => (
-                        <h1 {...props} />
-                      ),
-                      h2: ({node, ...props}) => (
-                        <h2 {...props} />
-                      ),
-                      h3: ({node, ...props}) => (
-                        <h3 {...props} />
-                      ),
-                      ul: ({node, ...props}) => (
-                        <ul {...props} />
-                      ),
-                      ol: ({node, ...props}) => (
-                        <ol {...props} />
-                      ),
-                      li: ({node, ...props}) => (
-                        <li {...props} />
-                      ),
-                      p: ({node, ...props}) => (
-                        <p {...props} />
-                      ),
-                      strong: ({node, ...props}) => (
-                        <strong {...props} />
-                      ),
-                      a: ({node, ...props}) => (
-                        <a {...props} />
-                      )
-                    }}
-                  >
-                    {post.content}
-                  </ReactMarkdown>
-                </div>
+                <MarkdownWithCTA 
+                  content={post.content} 
+                  postTitle={post.title}
+                />
 
                 {/* Tags */}
                 {post.tags.length > 0 && (
@@ -317,14 +277,47 @@ export default function BlogPostPage() {
                 </div>
               </article>
 
+              {/* CTA Final */}
+              <div className="mt-12 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-500/30 rounded-2xl p-8 text-center">
+                <div className="max-w-2xl mx-auto">
+                  <div className="text-4xl mb-4">🚀</div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    Pronto para Transformar sua Empresa?
+                  </h3>
+                  <p className="text-gray-300 mb-6 text-lg">
+                    Implemente um programa de indicações que realmente funciona e veja seus clientes se tornarem seus melhores vendedores.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link
+                      href="/testegratis"
+                      className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 group"
+                    >
+                      Começar Teste Grátis
+                      <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                    <Link
+                      href="/chat"
+                      className="inline-flex items-center px-8 py-4 border border-blue-500/50 text-lg font-medium rounded-xl text-blue-400 hover:text-white hover:bg-blue-600/20 transition-all duration-200 group"
+                    >
+                      Agendar Consultoria
+                      <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
               {/* Navegação */}
-              <div className="mt-12 flex justify-center">
+              <div className="mt-8 flex justify-center">
                 <Link
                   href="/blog"
-                  className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 group"
+                  className="inline-flex items-center px-6 py-3 border border-gray-600 text-base font-medium rounded-xl text-gray-400 hover:text-white hover:border-gray-500 transition-all duration-200 group"
                 >
                   ← Ver Todos os Posts
-                  <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>
@@ -334,6 +327,7 @@ export default function BlogPostPage() {
         </section>
 
         <ModernFooter />
+        <ChatBotWrapper />
       </main>
     </>
   );

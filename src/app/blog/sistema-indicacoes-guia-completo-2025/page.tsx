@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import Header from '@/components/Header';
 import ModernFooter from '@/components/ModernFooter';
 import ShareButton from '@/components/ShareButton';
+import MarkdownWithCTA from '@/components/MarkdownWithCTA';
 import { formatDate } from '../../../utils/markdown';
 import Head from 'next/head';
 
@@ -393,54 +394,10 @@ export default function SistemaIndicacoesGuiaCompleto2025Page() {
             >
               {/* Conteúdo do Post */}
               <article className="bg-gray-800 rounded-2xl p-8 border border-gray-700 w-full">
-                <div className="markdown-content">
-                  <ReactMarkdown 
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      // Usa as mesmas classes CSS compartilhadas
-                      table: ({node, ...props}) => (
-                        <div className="table-wrapper">
-                          <table {...props} />
-                        </div>
-                      ),
-                      th: ({node, ...props}) => (
-                        <th {...props} />
-                      ),
-                      td: ({node, ...props}) => (
-                        <td {...props} />
-                      ),
-                      h1: ({node, ...props}) => (
-                        <h1 {...props} />
-                      ),
-                      h2: ({node, ...props}) => (
-                        <h2 {...props} />
-                      ),
-                      h3: ({node, ...props}) => (
-                        <h3 {...props} />
-                      ),
-                      ul: ({node, ...props}) => (
-                        <ul {...props} />
-                      ),
-                      ol: ({node, ...props}) => (
-                        <ol {...props} />
-                      ),
-                      li: ({node, ...props}) => (
-                        <li {...props} />
-                      ),
-                      p: ({node, ...props}) => (
-                        <p {...props} />
-                      ),
-                      strong: ({node, ...props}) => (
-                        <strong {...props} />
-                      ),
-                      a: ({node, ...props}) => (
-                        <a {...props} />
-                      )
-                    }}
-                  >
-                    {post.content}
-                  </ReactMarkdown>
-                </div>
+                <MarkdownWithCTA 
+                  content={post.content} 
+                  postTitle={post.title}
+                />
 
                 {/* Tags */}
                 {post.tags.length > 0 && (

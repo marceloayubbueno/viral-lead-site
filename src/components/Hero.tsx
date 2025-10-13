@@ -156,7 +156,8 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Dashboard Preview */}
+          {/* Dashboard Preview - DESABILITADO TEMPORARIAMENTE */}
+          {/* 
           <motion.div 
             className="mt-20 relative"
             initial={{ opacity: 0, y: 50 }}
@@ -182,9 +183,7 @@ const Hero = () => {
                 transition={{ duration: 0.3 }}
               >
                 <div className="bg-gray-800/80 backdrop-blur-sm rounded-xl aspect-[16/11] border border-white/20 overflow-hidden shadow-inner">
-                  {/* Dashboard Mockup */}
                   <div className="h-full p-4 relative flex flex-col">
-                    {/* Top Bar */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -194,7 +193,6 @@ const Hero = () => {
                       <div className="text-white/60 text-sm">Viral Lead Dashboard</div>
                     </div>
                     
-                    {/* Mock Dashboard Content */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
                       <motion.div 
                         className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/10 hover:bg-white/15 transition-all"
@@ -231,9 +229,7 @@ const Hero = () => {
                       </motion.div>
                     </div>
                     
-                    {/* Charts Section - Fill remaining space */}
                     <div className="flex-1 space-y-3 min-h-0">
-                      {/* Bar Chart - Takes more space */}
                     <motion.div 
                         className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/10"
                         style={{ height: '45%', minHeight: '140px' }}
@@ -266,7 +262,6 @@ const Hero = () => {
                       </div>
                     </motion.div>
                     
-                      {/* Line Chart - Takes remaining space */}
                       <motion.div 
                         className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/10"
                         style={{ height: '40%', minHeight: '120px' }}
@@ -281,7 +276,6 @@ const Hero = () => {
                               viewBox="0 0 320 70" 
                               preserveAspectRatio="none"
                             >
-                              {/* Grid lines */}
                               <defs>
                                 <pattern id="grid" width="30" height="12" patternUnits="userSpaceOnUse">
                                   <path d="M 30 0 L 0 0 0 12" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
@@ -289,7 +283,6 @@ const Hero = () => {
                               </defs>
                               <rect x="20" y="0" width="280" height="60" fill="url(#grid)" />
                               
-                              {/* Area fill under line */}
                               <motion.path
                                 d="M 30,55 Q 70,35 110,20 T 190,15 T 250,12 T 290,10 L 300,10 L 300,60 L 30,60 Z"
                                 fill="url(#areaGradient)"
@@ -301,7 +294,6 @@ const Hero = () => {
                                 }}
                               />
                               
-                              {/* Line Chart */}
                               <motion.path
                                 d="M 30,55 Q 70,35 110,20 T 190,15 T 250,12 T 290,10"
                                 fill="none"
@@ -317,7 +309,6 @@ const Hero = () => {
                                 }}
                               />
                               
-                              {/* Gradient definitions */}
                               <defs>
                                 <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                   <stop offset="0%" stopColor="#3b82f6" />
@@ -330,7 +321,6 @@ const Hero = () => {
                                 </linearGradient>
                               </defs>
                               
-                              {/* Data points */}
                               {[
                                 {x: 30, y: 55}, {x: 70, y: 35}, {x: 110, y: 20}, 
                                 {x: 190, y: 15}, {x: 250, y: 12}, {x: 290, y: 10}
@@ -361,6 +351,56 @@ const Hero = () => {
                   </div>
                 </div>
               </motion.div>
+            </div>
+          </motion.div>
+          */}
+
+          {/* Vídeo do YouTube - Movido da VideoSection */}
+          <motion.div 
+            className="mt-20 relative"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 2.5 }}
+          >
+            <div className="relative max-w-5xl mx-auto">
+              {/* Background Glow */}
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl md:rounded-3xl blur-3xl opacity-20 scale-105"
+                animate={{
+                  scale: [1.05, 1.1, 1.05],
+                  opacity: [0.2, 0.3, 0.2],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Video Frame */}
+              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl p-2 border border-white/20 shadow-2xl">
+                <div className="relative aspect-video rounded-xl md:rounded-2xl overflow-hidden bg-gray-800">
+                  {/* YouTube Embed */}
+                  <iframe
+                    src="https://www.youtube.com/embed/uZg1vqi4Ajk"
+                    title="Viral Lead - Demonstração da Plataforma"
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                  
+                  {/* Overlay with YouTube Branding */}
+                  <div className="absolute top-2 md:top-4 right-2 md:right-4">
+                    <div className="flex items-center space-x-1 md:space-x-2 bg-red-600 text-white px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium">
+                      <svg className="w-3 h-3 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                      <span className="hidden sm:inline">YouTube</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

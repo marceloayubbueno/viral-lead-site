@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import ModernFooter from '@/components/ModernFooter';
+import ChatBotWrapper from '@/components/ChatBotWrapper';
 import { BlogPost } from '../../types/blog';
 import { getPosts } from '../../utils/storage';
 import { formatDate } from '../../utils/markdown';
@@ -113,6 +114,7 @@ export default function BlogPage() {
           </div>
         </div>
         <ModernFooter />
+        <ChatBotWrapper />
       </main>
     );
   }
@@ -303,6 +305,7 @@ export default function BlogPage() {
       </section>
 
       <ModernFooter />
+      <ChatBotWrapper />
     </main>
   );
 }

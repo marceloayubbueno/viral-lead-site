@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- ========================================
+       PÁGINAS PRINCIPAIS
+       ======================================== -->
+  
   <!-- Homepage - Prioridade Máxima -->
   <url>
     <loc>https://virallead.com.br/</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,55 +18,23 @@
   <!-- Blog Principal -->
   <url>
     <loc>https://virallead.com.br/blog</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Post: Estratégias de Indicação de Clientes -->
-  <url>
-    <loc>https://virallead.com.br/blog/estrategias-indicacao-clientes-2025</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Post: Marketing de Indicação -->
-  <url>
-    <loc>https://virallead.com.br/blog/marketing-indicacao-guia-completo-2025</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Post: Sistema de Indicações -->
-  <url>
-    <loc>https://virallead.com.br/blog/sistema-indicacoes-guia-completo-2025</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Post: Referral Marketing -->
-  <url>
-    <loc>https://virallead.com.br/blog/referral-marketing-como-funciona-2025</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <!-- Calculadora -->
   <url>
     <loc>https://virallead.com.br/calculadora</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   
   <!-- Apresentação -->
   <url>
     <loc>https://virallead.com.br/apresentacao</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -67,15 +42,15 @@
   <!-- Teste Grátis -->
   <url>
     <loc>https://virallead.com.br/testegratis</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   
   <!-- Chat -->
   <url>
     <loc>https://virallead.com.br/chat</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -83,8 +58,217 @@
   <!-- Privacidade -->
   <url>
     <loc>https://virallead.com.br/privacidade</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- ========================================
+       PÁGINAS DE CATEGORIAS DO BLOG
+       ======================================== -->
+
+  <!-- Categoria: vendas -->
+  <url>
+    <loc>https://virallead.com.br/blog/categoria/vendas</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Categoria: crescimento -->
+  <url>
+    <loc>https://virallead.com.br/blog/categoria/crescimento</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Categoria: recompensas -->
+  <url>
+    <loc>https://virallead.com.br/blog/categoria/recompensas</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Categoria: ia -->
+  <url>
+    <loc>https://virallead.com.br/blog/categoria/ia</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Categoria: automacao -->
+  <url>
+    <loc>https://virallead.com.br/blog/categoria/automacao</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Categoria: marketing-digital -->
+  <url>
+    <loc>https://virallead.com.br/blog/categoria/marketing-digital</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Categoria: gestao -->
+  <url>
+    <loc>https://virallead.com.br/blog/categoria/gestao</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Categoria: ferramentas -->
+  <url>
+    <loc>https://virallead.com.br/blog/categoria/ferramentas</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ========================================
+       POSTS DO BLOG
+       ======================================== -->
+
+  <!-- Post: Estratégias de Indicação de Clientes -->
+  <url>
+    <loc>https://virallead.com.br/blog/estrategias-indicacao-clientes-2025</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
+
+  <!-- Post: Marketing de Indicação: Guia Completo -->
+  <url>
+    <loc>https://virallead.com.br/blog/marketing-indicacao-guia-completo-2025</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Sistema de Indicações: Guia Completo -->
+  <url>
+    <loc>https://virallead.com.br/blog/sistema-indicacoes-guia-completo-2025</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Referral Marketing: Como Funciona -->
+  <url>
+    <loc>https://virallead.com.br/blog/referral-marketing-como-funciona-2025</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Indique e Ganhe: Guia Completo -->
+  <url>
+    <loc>https://virallead.com.br/blog/indique-e-ganhe-guia-completo-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Marketing Boca a Boca: Guia Completo -->
+  <url>
+    <loc>https://virallead.com.br/blog/marketing-boca-a-boca-guia-completo-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Member Get Member (MGM): Guia 2025 -->
+  <url>
+    <loc>https://virallead.com.br/blog/member-get-member-mgm-guia-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Alavancas de Crescimento Empresarial -->
+  <url>
+    <loc>https://virallead.com.br/blog/alavancas-crescimento-empresarial-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Recompensas para Programas de Indicação -->
+  <url>
+    <loc>https://virallead.com.br/blog/recompensas-programas-indicacao-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Como Pedir Indicações de Clientes -->
+  <url>
+    <loc>https://virallead.com.br/blog/como-pedir-indicacoes-clientes-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Embaixadores de Marca: Como Criar -->
+  <url>
+    <loc>https://virallead.com.br/blog/embaixadores-marca-como-criar-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Como Engajar e Ativar Promotores -->
+  <url>
+    <loc>https://virallead.com.br/blog/promotores-engajar-ativar-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: IA no Marketing de Indicação -->
+  <url>
+    <loc>https://virallead.com.br/blog/ia-marketing-indicacao-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Tendências do Marketing de Indicação 2025 -->
+  <url>
+    <loc>https://virallead.com.br/blog/tendencias-marketing-indicacao-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Top 20 Ferramentas de Marketing de Indicação -->
+  <url>
+    <loc>https://virallead.com.br/blog/ferramentas-marketing-indicacao-top-20-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: Automação de Programas de Indicação -->
+  <url>
+    <loc>https://virallead.com.br/blog/automacao-programas-indicacao-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Post: LGPD e Marketing de Indicação: Guia 2025 -->
+  <url>
+    <loc>https://virallead.com.br/blog/lgpd-marketing-indicacao-guia-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>

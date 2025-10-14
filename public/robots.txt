@@ -18,9 +18,20 @@ Disallow: /obrigadolead
 Disallow: /obrigadoleadqualificado
 Disallow: /obrigadotestegratis
 
-# Sitemaps
+# Bloquear feeds antigos do WordPress
+Disallow: /*/feed/
+Disallow: /feed/
+Disallow: /comments/feed/
+Disallow: /home/feed/
+
+# Bloquear páginas antigas que retornam 404
+Disallow: /contato/
+Disallow: /ola-mundo/
+Disallow: /ola-mundo-duplicate-1/
+Disallow: /mundo/
+
+# Sitemap (apenas o principal)
 Sitemap: https://virallead.com.br/sitemap.xml
-Sitemap: https://virallead.com.br/api/sitemap.xml
 
 # Crawl-delay para respeitar o servidor
 Crawl-delay: 1

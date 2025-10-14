@@ -1,0 +1,45 @@
+# Redirecionamentos para URLs antigas que retornam 404
+
+# Páginas principais
+/contato/ /contato 301
+/blog/ /blog 301
+/obrigado-lead/ /obrigadolead 301
+/ola-mundo/ /blog 301
+/marketing-de-indicacao/ /blog 301
+/login /contato 301
+
+# URLs malformadas
+/$ / 301
+/mundo/ / 301
+/ola-mundo-duplicate-1/ /blog 301
+
+# Feeds antigos do WordPress - bloquear
+/*/feed/ /blog 301
+/feed/ /blog 301
+/comments/feed/ /blog 301
+/home/feed/ /blog 301
+
+# Arquivos estáticos
+/favicon.ico /images/logo-branca.svg 301
+
+# Páginas de blog antigas - redirecionar para nova estrutura
+/como-lancar-um-programa-de-indicacao-de-clientes/ /blog/estrategias-indicacao-clientes-2025 301
+/tendencias-de-programas-de-indicacao-de-cliente/ /blog/tendencias-marketing-indicacao-2025 301
+/o-que-e-marketing-de-indicacao/ /blog/marketing-indicacao-guia-completo-2025 301
+
+# Páginas de blog antigas - redirecionar para blog principal
+/programa-de-indicacao-para-empresas/ /blog 301
+/como-lancar-um-programa-de-indicacao-de-clientes-que-realmente-funciona/ /blog 301
+/programa-de-indicacao/ /blog 301
+/o-futuro-dos-programas-de-indicacao-de-cliente-na-visao-da-viral-lead/ /blog 301
+/como-implementar-um-programa-de-indicacao-de-clientes-e-transformar-seus-clientes-em-vendedores-poderosos/ /blog 301
+/programa-de-indicacao-de-clientes/ /blog 301
+/recompensas-no-marketing-de-indicacao-como-definir-para-sua-estrategia/ /blog 301
+/como-conquistar-mais-clientes-usando-marketing-de-indicacao/ /blog 301
+/automatizacao-e-personalizacao-a-formula-para-o-sucesso-das-suas-campanhas-de-indicacao/ /blog 301
+
+# Páginas de paginação antigas
+/blog/page/3/ /blog 301
+
+# Elementos de template antigos
+/?elementskit_template=menu / 301

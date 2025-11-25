@@ -4,15 +4,12 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import CountUp from 'react-countup'
 import { TrendingUp, Clock, DollarSign, Users, Target, ArrowRight } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 
 const Results = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
-
-  const router = useRouter()
 
   const results = [
     {
@@ -232,18 +229,20 @@ const Results = () => {
           
           <motion.button
             onClick={() => {
-              if (typeof window !== 'undefined' && window.location.pathname === '/testegratis') {
-                const form = document.getElementById('form-testegratis');
-                if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              } else {
-                router.push('/chat');
+              if (typeof window !== 'undefined') {
+                if (window.location.pathname === '/testegratis') {
+                  const form = document.getElementById('form-testegratis');
+                  if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                  window.open('https://app.virallead.com.br/pages/teste-gratis.html', '_blank', 'noopener,noreferrer');
+                }
               }
             }}
             className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {typeof window !== 'undefined' && window.location.pathname === '/testegratis' ? 'Começar Meu Teste Agora' : 'Quero Transformar Meu Negócio Agora'}
+            Teste Grátis
           </motion.button>
         </motion.div>
       </div>

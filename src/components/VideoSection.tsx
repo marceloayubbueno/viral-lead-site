@@ -3,15 +3,12 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Play, Youtube } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 
 const VideoSection = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
-
-  const router = useRouter()
 
   return (
     <section className="py-12 md:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black" ref={ref}>
@@ -116,7 +113,7 @@ const VideoSection = () => {
           </motion.p>
           
           <motion.button
-            onClick={() => router.push('/chat')}
+            onClick={() => window.open('https://app.virallead.com.br/pages/teste-gratis.html', '_blank', 'noopener,noreferrer')}
             className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg md:rounded-xl text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-200 group w-full sm:w-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -124,7 +121,7 @@ const VideoSection = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1.4 }}
           >
-            Agendar Demonstração Personalizada
+            Teste Grátis
             <Play className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:scale-110 transition-transform inline" />
           </motion.button>
         </motion.div>

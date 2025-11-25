@@ -97,18 +97,28 @@ const CaseStudies = () => {
                   })}
                 </div>
 
-                <button className={`w-full mt-6 bg-gradient-to-r ${study.color} text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 group-hover:scale-105`}>
-                  Ler Caso Completo
-                </button>
+                <a 
+                  href="https://app.virallead.com.br/pages/teste-gratis.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full mt-6 bg-gradient-to-r ${study.color} text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 group-hover:scale-105 text-center block`}
+                >
+                  Começar Teste Grátis
+                </a>
               </div>
             </div>
           ))}
         </div>
 
         <div className="text-center mt-12">
-          <button className="btn-secondary text-lg px-8 py-4">
-            Ver Todos os Casos de Sucesso
-          </button>
+          <a 
+            href="https://app.virallead.com.br/pages/teste-gratis.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary text-lg px-8 py-4 inline-block"
+          >
+            Começar Teste Grátis
+          </a>
         </div>
       </div>
     </section>

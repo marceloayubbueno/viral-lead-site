@@ -289,7 +289,9 @@ export default function BlogPostPage() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link
-                      href="/testegratis"
+                      href="https://app.virallead.com.br/pages/teste-gratis.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 group"
                     >
                       Começar Teste Grátis

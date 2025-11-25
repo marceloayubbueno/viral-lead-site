@@ -3,14 +3,12 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Check, Star, Zap, ArrowRight } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 
 const ModernPricing = () => {
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
   })
-  const router = useRouter()
 
   return (
     <section id="pricing" className="py-20 bg-gradient-to-br from-gray-900 to-black text-white" ref={ref}>
@@ -146,7 +144,7 @@ const ModernPricing = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Começar Meu Teste Agora
+                    Teste Grátis
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform inline" />
                   </motion.button>
                   <p className="text-gray-400 text-sm">
@@ -205,18 +203,20 @@ const ModernPricing = () => {
                 >
                   <motion.button
                     onClick={() => {
-                      if (typeof window !== 'undefined' && window.location.pathname === '/testegratis') {
-                        const form = document.getElementById('form-testegratis');
-                        if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                      } else {
-                        router.push('/chat');
+                      if (typeof window !== 'undefined') {
+                        if (window.location.pathname === '/testegratis') {
+                          const form = document.getElementById('form-testegratis');
+                          if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        } else {
+                          window.open('https://app.virallead.com.br/pages/teste-gratis.html', '_blank', 'noopener,noreferrer');
+                        }
                       }
                     }}
                     className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-xl text-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 group mb-4"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Agendar uma demonstração
+                    Teste Grátis
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform inline" />
                   </motion.button>
                   

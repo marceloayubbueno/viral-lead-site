@@ -74,9 +74,14 @@ const Footer = () => {
             Launch Affiliate, Influencer & Referral Programs in under 15 minutes. 
             Start building a program that delivers results.
           </p>
-          <button className="btn-primary text-lg px-8 py-4">
-            Get Started
-          </button>
+          <Link 
+            href="https://app.virallead.com.br/pages/teste-gratis.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary text-lg px-8 py-4 inline-block"
+          >
+            Começar Teste Grátis
+          </Link>
         </div>
 
         {/* Links Section */}

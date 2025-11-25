@@ -3,12 +3,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const router = useRouter()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
@@ -61,7 +59,14 @@ const Header = () => {
                 Teste Grátis
               </button>
             ) : (
-              <Link href="#" onClick={e => {e.preventDefault(); router.push('/chat')}} className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-200">Agendar demonstração</Link>
+              <Link 
+                href="https://app.virallead.com.br/pages/teste-gratis.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-200"
+              >
+                Teste Grátis
+              </Link>
             )}
           </div>
 
@@ -101,7 +106,14 @@ const Header = () => {
                     Teste Grátis
                   </button>
                 ) : (
-                  <Link href="#" onClick={e => {e.preventDefault(); router.push('/chat')}} className="block px-3 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-md mt-2">Agendar demonstração</Link>
+                  <Link 
+                    href="https://app.virallead.com.br/pages/teste-gratis.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-3 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-md mt-2"
+                  >
+                    Teste Grátis
+                  </Link>
                 )}
               </div>
             </div>
